@@ -9,9 +9,24 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "bg-header": "url('/assets/suggestions/mobile/background-header.png')",
+      },
+      colors: {
+        primary: {
+          voilet: "#AD1FEA",
+          "light-blue": "#4661E6",
+          "dark-blue": "rgb(55, 63, 104)",
+        },
+        secondary: {
+          "light-gray": "#F2F4FF",
+          "very-gray": "#F7F8FD",
+          "dark-gray": "#3A4374",
+          "light-blue": "#647196",
+        },
+        tetiary: {
+          orange: "#F49F85",
+          "sea-blue": "#62BCFA",
+        },
       },
     },
   },
