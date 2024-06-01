@@ -10,6 +10,8 @@ const config: Config = {
     extend: {
       backgroundImage: {
         "bg-header": "url('/assets/suggestions/mobile/background-header.png')",
+        "bg-header-desktop":
+          "url('/assets/suggestions/desktop/background-header.png')",
       },
       colors: {
         primary: {

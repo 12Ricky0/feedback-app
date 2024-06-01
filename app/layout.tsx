@@ -19,7 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${jost.className} antialiased bg-secondary-very-gray`}>
+      <body
+        className={`${jost.className} antialiased bg-secondary-very-gray md:px-10 md:py-[95px]`}
+      >
         {children}
       </body>
     </html>

@@ -4,10 +4,12 @@ import FeedbackContainer from "@/components/containers/feedback";
 
 export default function Home() {
   return (
-    <main className="lg:mx-[165px]">
+    <main className="md:flex justify-center mx-auto max-w-[1100px] w-full">
       <Nav />
-      <Header />
-      <FeedbackContainer />
+      <div className="w-full md:ml-[30px]">
+        <Header />
+        <FeedbackContainer />
+      </div>
     </main>
   );
 }
