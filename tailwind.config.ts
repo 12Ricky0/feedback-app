@@ -12,6 +12,8 @@ const config: Config = {
         "bg-header": "url('/assets/suggestions/mobile/background-header.png')",
         "bg-header-desktop":
           "url('/assets/suggestions/desktop/background-header.png')",
+        "bg-header-tablet":
+          "url('/assets/suggestions/tablet/background-header.png')",
       },
       colors: {
         primary: {

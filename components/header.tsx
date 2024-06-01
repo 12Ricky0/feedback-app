@@ -3,14 +3,15 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import SideMenu from "./side-menu";
 
 export function Nav() {
   const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
   const [sort, setSort] = useState("ALL");
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <section className="md:w-[255px]">
-      <nav className="bg-bg-header lg:bg-bg-header-desktop md:pt-[62px] md:rounded-lg md:w-[255px]">
+    <section className="md:w-[255px] md:flex lg:inline-block gap-[10px]">
+      <nav className="bg-bg-header lg:bg-bg-header-desktop md:bg-bg-header-tablet md:pt-[62px] bg-no-repeat bg-cover md:rounded-lg md:w-[223px] lg:w-[255px] md:h-[178px]">
         <article className="flex justify-between mx-6 items-center ">
           <article className="py-4 ">
             <h1 className="font-bold text-white text-[15px]">
@@ -32,51 +33,10 @@ export function Nav() {
           />
         </article>
       </nav>
-      <div className="absolute md:relative">
-        <header className="bg-white rounded-lg my-6 md:w-[255px]">
-          <ul className="grid grid-cols-4 grid-rows-3 gap-x-2 gap-y-4 p-6">
-            {options.map((option) => (
-              <li
-                onClick={() => setSort(option)}
-                className={` px-4 py-[5px] last:w-[77px] hover:bg-tetiary-sea-blue cursor-pointer ${
-                  options.indexOf(option) === 3 && "col-span-2"
-                } ${options.indexOf(option) === 4 && "col-span-2 w-[56px]"} ${
-                  option == sort
-                    ? "text-white bg-primary-light-blue"
-                    : "text-primary-light-blue bg-secondary-very-gray"
-                } rounded-lg  text-[13px] flex items-center justify-center font-semibold`}
-                key={options.indexOf(option)}
-              >
-                {option}
-              </li>
-            ))}
-          </ul>
-        </header>
 
-        <header className="bg-white rounded-lg my-6 pb-6 md:w-[255px]">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="font-bold text-[18px] p-6 text-secondary-light-blue ">
-                Roadmap
-              </h1>
-              <ul className="text-[16px] text-secondary-light-blue list-disc list-inside ml-6">
-                <li className="marker:text-tetiary-orange ">Planned</li>
-                <li className="marker:text-primary-voilet my-2">In-Progress</li>
-                <li className="marker:text-tetiary-sea-blue">Live</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[13px] text-tetiary-sea-blue p-6">
-                View
-              </h3>
-              <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">
-                <li>3</li>
-                <li className="my-2">2</li>
-                <li>1</li>
-              </ul>
-            </div>
-          </div>
-        </header>
+      {isOpen && <SideMenu />}
+      <div className="hidden md:block">
+        <SideMenu />
       </div>
     </section>
   );

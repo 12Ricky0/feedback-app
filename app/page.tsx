@@ -4,7 +4,7 @@ import FeedbackContainer from "@/components/containers/feedback";
 
 export default function Home() {
   return (
-    <main className="md:flex justify-center mx-auto max-w-[1100px] w-full">
+    <main className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full">
       <Nav />
       <div className="w-full md:ml-[30px]">
         <Header />
