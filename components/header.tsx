@@ -10,9 +10,9 @@ export function Nav() {
   const [sort, setSort] = useState("ALL");
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <section className="md:w-[255px] md:flex lg:inline-block gap-[10px]">
-      <nav className="bg-bg-header lg:bg-bg-header-desktop md:bg-bg-header-tablet md:pt-[62px] bg-no-repeat bg-cover md:rounded-lg md:w-[223px] lg:w-[255px] md:h-[178px]">
-        <article className="flex justify-between mx-6 items-center ">
+    <section className=" md:flex  lg:inline-block gap-[10px]">
+      <nav className="bg-bg-header lg:bg-bg-header-desktop md:bg-bg-header-tablet md:pt-[62px] bg-no-repeat bg-cover md:rounded-lg md:w-[240px] lg:w-[255px] md:h-[178px]">
+        <article className="flex justify-between mx-6 items-stretch ">
           <article className="py-4 ">
             <h1 className="font-bold text-white text-[15px]">
               Frontend Mentor
@@ -82,7 +82,7 @@ export function Header() {
           />
         </div>
         {select && (
-          <div className="absolute md:top-[170px] top-[140px] w-[200px] md:ml-[190px] bg-white md:w-[255px] shadow-lg shadow-secondary-light-blue rounded-lg">
+          <div className="absolute md:top-[350px] lg:top-[170px] top-[140px] w-[200px] md:ml-[190px] bg-white md:w-[255px] shadow-lg shadow-secondary-light-blue rounded-lg">
             <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
               {options.map((option) => (
                 <div
