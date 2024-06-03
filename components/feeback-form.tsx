@@ -7,7 +7,7 @@ function SelectOption() {
   const [sort, setSort] = useState("Feature");
 
   return (
-    <div className="mt-4 bg-white shadow-lg w-full shadow-secondary-light-blue rounded-lg">
+    <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
       <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
         {options.map((option) => (
           <div
@@ -41,19 +41,26 @@ export default function FeedbackForm() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px]">
-      <h1 className="text-[18px] mx-6 font-bold text-secondary-dark-gray mb-6 pt-11">
+    <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px] relative">
+      <Image
+        alt="check"
+        src="/assets/shared/icon-new-feedback.svg"
+        width={40}
+        height={40}
+        className="absolute -translate-y-5 mx-6"
+      />
+      <h1 className="text-[18px] md:text-[24px] mx-6 font-bold text-secondary-dark-gray mb-6 pt-11">
         Create New Feedback
       </h1>
 
       <form action="" className="mx-6">
         <label
-          className="text-[13px] block font-bold text-secondary-dark-gray"
+          className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray"
           htmlFor="title"
         >
           Feedback Title
         </label>
-        <span className="text-secondary-light-blue text-[13px]">
+        <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
           Add a short, descriptive headline
         </span>
         <input
@@ -64,12 +71,12 @@ export default function FeedbackForm() {
           className="w-full pl-4 text-secondary-light-blue text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
         />
         <label
-          className="text-[13px] block font-bold text-secondary-dark-gray mt-6"
+          className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
           htmlFor="category"
         >
           Category
         </label>
-        <span className="text-secondary-light-blue text-[13px]">
+        <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
           Choose a category for your feedback
         </span>
         {/* <input
@@ -83,7 +90,7 @@ export default function FeedbackForm() {
         <div>
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full px-4 text-secondary-light-blue text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
+            className="w-full px-4 text-secondary-light-blue md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
           >
             <input
               type="text"
@@ -103,12 +110,12 @@ export default function FeedbackForm() {
         </div>
 
         <label
-          className="text-[13px] block font-bold text-secondary-dark-gray mt-6"
+          className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
           htmlFor="details"
         >
           Feedback Detail
         </label>
-        <span className="text-secondary-light-blue text-[13px]">
+        <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
           Include any specific comments on what should be improved, added, etc.
         </span>
         <textarea
@@ -119,17 +126,14 @@ export default function FeedbackForm() {
           autoComplete="on"
           className="w-full pl-4 text-secondary-light-blue text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
         />
-        <div className="mt-10 pb-6">
+        <div className="mt-10 pb-6 md:flex flex-row-reverse gap-4">
           <button
-            className="border-none rounded-lg w-full bg-primary-voilet py-[10px] text-white font-bold text-[13px]"
+            className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
             type="submit"
           >
             Add Feedback
           </button>
-          <button
-            className="border-none rounded-lg w-full bg-secondary-dark-gray mt-4 py-[10px] text-white font-bold text-[13px]"
-            type="submit"
-          >
+          <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
             Cancel
           </button>
         </div>
