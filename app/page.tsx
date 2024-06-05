@@ -6,7 +6,7 @@ import RmComtainer from "@/components/containers/roadmap";
 
 export default function Home() {
   return (
-    <main className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full">
+    <main className="md:flex md:flex-col lg:flex-row  justify-center mx-auto max-w-[1100px] w-full">
       {/* <Nav />
       <div className="w-full lg:ml-[30px] md:mt-10 lg:mt-0">
         <Header />
@@ -17,3 +17,6 @@ export default function Home() {
     </main>
   );
 }
+
+// className =
+//   "md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full";
