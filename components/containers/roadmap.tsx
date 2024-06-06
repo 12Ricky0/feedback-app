@@ -4,9 +4,9 @@ import Image from "next/image";
 import data from "../../data.json";
 import { useState } from "react";
 
-export default function RmComtainer() {
+export default function RmComtainer({ info }: { info: any }) {
   const [roadmap, setRoadmap] = useState("planned");
-  let info = data.productRequests.filter((p) => p.status == roadmap);
+
   function get_alingment(status: string) {
     switch (status) {
       case "in-progress":
@@ -56,7 +56,7 @@ export default function RmComtainer() {
             "border-b-[6px] border-b-tetiary-orange pb-[16px] "
           }`}
         >
-          Planned ({info.length})
+          Planned (2)
         </h1>
         <h1
           onClick={() => setRoadmap("in-progress")}
@@ -88,7 +88,7 @@ export default function RmComtainer() {
       </article>
 
       {/* <div className="flex items-start justify-center"> */}
-      {info?.map((d) => (
+      {info?.map((d: any) => (
         <div
           key={d.id}
           className={`mr-0 items-start flex ${get_alingment(d.status)} ${
@@ -102,11 +102,11 @@ export default function RmComtainer() {
               d.status == "in-progress" && "border-t-primary-voilet"
             } mx-6 md:mx-0 pb-6 mb-[16px]`}
           >
-            <ul className="mx-6">
+            <div className="mx-6 marker:text-primary-voilet">
               <li className="marker:text-primary-voilet my-2 text-[13px] text-secondary-light-blue mt-[22px]">
-                In-Progress
+                {d.status}
               </li>
-            </ul>
+            </div>
             <article className="mx-6 mt-[16px]">
               <h1 className="font-bold text-[13px] text-secondary-dark-gray">
                 One-click portfolio generation

@@ -3,6 +3,7 @@ import { Nav, Header } from "@/components/header";
 import FeedbackContainer from "@/components/containers/feedback";
 import FeedbackForm from "@/components/feeback-form";
 import RmComtainer from "@/components/containers/roadmap";
+import CommentContainer from "@/components/containers/comment-container";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <FeedbackContainer />
       </div> */}
       {/* <FeedbackForm /> */}
-      <RmComtainer />
+      <CommentContainer />
     </main>
   );
 }
