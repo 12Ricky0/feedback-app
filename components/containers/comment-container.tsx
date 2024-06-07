@@ -2,6 +2,7 @@
 import FeedbackContainer from "./feedback";
 import CommentCard from "./comment-card";
 import { useState } from "react";
+import { CommentForm } from "./forms";
 
 export default function CommentContainer() {
   const [count, setCount] = useState(250);
@@ -23,7 +24,7 @@ export default function CommentContainer() {
         <CommentCard />
       </section>
 
-      <form className="bg-white mx-6 my-6 rounded-lg" action="">
+      {/* <form className="bg-white mx-6 my-6 rounded-lg" action="">
         <h1 className="py-6 mx-6 font-bold text-[18px] text-secondary-dark-gray">
           Add Comment
         </h1>
@@ -50,7 +51,8 @@ export default function CommentContainer() {
             Post Comment
           </button>
         </div>
-      </form>
+      </form> */}
+      <CommentForm />
     </section>
   );
 }
