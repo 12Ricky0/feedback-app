@@ -1,9 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ProductContext } from "@/user-provider";
 
 export default function SideMenu() {
   const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
-  const [sort, setSort] = useState("ALL");
+  // const [sort, setSort] = useState("ALL");
+  const { sort, setSort }: any = useContext(ProductContext);
 
   return (
     <section>

@@ -1,8 +1,19 @@
-import Image from "next/image";
+"use client";
 
-export default function FeedbackContainer() {
-  return (
-    <section className="bg-white mx-6 md:mx-0 text-[13px] mt-4 rounded-lg">
+import Image from "next/image";
+import { ProductContext } from "@/user-provider";
+import { useContext } from "react";
+
+export default function FeedbackContainer({ data }: { data: any }) {
+  const { sort }: any = useContext(ProductContext);
+  let items = data.filter((item) => item.category == sort.toLowerCase());
+  console.log(sort);
+
+  return items.map((item) => (
+    <section
+      key={item.id}
+      className="bg-white mx-6 md:mx-0 text-[13px] mt-4 rounded-lg"
+    >
       <article className="p-6 md:flex justify-between items-center">
         <div className="md:inline-flex gap-10">
           <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 md:w-10 md:h-[53px] items-center md:flex-col justify-center hidden md:inline-flex">
@@ -67,5 +78,5 @@ export default function FeedbackContainer() {
         {/* mobile view */}
       </article>
     </section>
-  );
+  ));
 }
