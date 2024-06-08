@@ -3,80 +3,124 @@
 import Image from "next/image";
 import { ProductContext } from "@/user-provider";
 import { useContext } from "react";
+import { Header } from "../header";
+import Upvotes from "../upvote";
+import Empty from "../empty";
+import { ProductRequest } from "@/libs/definitions";
 
-export default function FeedbackContainer({ data }: { data: any }) {
-  const { sort }: any = useContext(ProductContext);
-  let items = data.filter((item) => item.category == sort.toLowerCase());
-  console.log(sort);
+export default function FeedbackContainer({
+  data,
+}: {
+  data: ProductRequest[];
+}) {
+  const { sort, sortBy }: any = useContext(ProductContext);
+  let items: ProductRequest[];
+  sort == "ALL"
+    ? (items = data)
+    : (items = data.filter(
+        (item: ProductRequest) => item.category == sort.toLowerCase()
+      ));
+  // console.log(items);
 
-  return items.map((item) => (
-    <section
-      key={item.id}
-      className="bg-white mx-6 md:mx-0 text-[13px] mt-4 rounded-lg"
-    >
-      <article className="p-6 md:flex justify-between items-center">
-        <div className="md:inline-flex gap-10">
-          <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 md:w-10 md:h-[53px] items-center md:flex-col justify-center hidden md:inline-flex">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-arrow-up.svg"
-              className="inline-block mr-2 md:mr-0 md:mb-2"
-              width={8}
-              height={4}
-            />
+  function sort_data() {
+    return items.sort((a: ProductRequest, b: ProductRequest) => {
+      switch (sortBy) {
+        case "Most Comments":
+          return b.comments.length - a.comments.length;
+        case "Least Comments":
+          return a.comments.length - b.comments.length;
+        case "Least Upvotes":
+          return a.upvotes - b.upvotes;
+        default:
+          return b.upvotes - a.upvotes;
+      }
+    });
+  }
 
-            <span className="font-bold">112</span>
+  function get_status(status: string) {
+    switch (status) {
+      case "enhancement":
+        return "Enhancement";
+
+      case "bug":
+        return "Bug";
+      case "feature":
+        return "Feature";
+      case "UX":
+        return "UX";
+      case "UI":
+        return "UI";
+    }
+  }
+
+  return (
+    <section>
+      <Header count={items.length} />
+      {items.length > 0 ? (
+        sort_data().map((item) => (
+          <div
+            key={item.id}
+            className="bg-white mx-6 last:mb-[55px] md:mx-0 text-[13px] mt-4 rounded-lg"
+          >
+            <article className="p-6 md:flex justify-between items-center">
+              <div className="md:inline-flex gap-10">
+                <Upvotes vote={item.upvotes} />
+                <article>
+                  <h1 className="text-secondary-dark-gray md:text-[18px] font-bold">
+                    {item.title}
+                  </h1>
+                  <p className="mt-2 mb-[12px] text-secondary-light-blue md:text-[16px]">
+                    {item.description}
+                  </p>
+                  <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
+                    {get_status(item.category)}
+                  </span>
+                </article>
+              </div>
+              <div className="hidden md:inline-flex items-center">
+                <Image
+                  alt="down"
+                  src="/assets/shared/icon-comments.svg"
+                  className="mr-2"
+                  width={18}
+                  height={16}
+                />
+                <span
+                  className={`${
+                    item.comments.length === 0 && "opacity-40"
+                  } font-bold md:text-[16px]`}
+                >
+                  {item.comments.length}
+                </span>
+              </div>
+
+              {/* mobile view */}
+              <div className="flex justify-between mt-4 items-center md:hidden">
+                <Upvotes vote={item.upvotes} />
+                <div className="flex items-center">
+                  <Image
+                    alt="down"
+                    src="/assets/shared/icon-comments.svg"
+                    className=" mr-2"
+                    width={18}
+                    height={16}
+                  />
+                  <span
+                    className={`${
+                      item.comments.length === 0 && "opacity-40"
+                    } font-bold md:text-[16px]`}
+                  >
+                    {item.comments.length}
+                  </span>{" "}
+                </div>
+              </div>
+              {/* mobile view */}
+            </article>
           </div>
-
-          <article>
-            <h1 className="text-secondary-dark-gray md:text-[18px] font-bold">
-              Add tags for solutions
-            </h1>
-            <p className="my-2 text-secondary-light-blue md:text-[16px]">
-              Easier to search for solutions based on a specific stack.
-            </p>
-            <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
-              Enhancement
-            </span>
-          </article>
-        </div>
-        <div className="hidden md:inline-flex items-center">
-          <Image
-            alt="down"
-            src="/assets/shared/icon-comments.svg"
-            className="mr-2"
-            width={18}
-            height={16}
-          />
-          <span className="font-bold ">2</span>
-        </div>
-
-        {/* mobile view */}
-        <div className="flex justify-between mt-4 items-center md:hidden">
-          <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-arrow-up.svg"
-              className="inline-block mr-2"
-              width={8}
-              height={4}
-            />
-
-            <span className="font-bold">112</span>
-          </div>
-          <div className="">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-comments.svg"
-              className="inline-block mr-2"
-              width={18}
-              height={16}
-            />
-            <span className="font-bold ">2</span>
-          </div>
-        </div>
-        {/* mobile view */}
-      </article>
+        ))
+      ) : (
+        <Empty />
+      )}
     </section>
-  ));
+  );
 }

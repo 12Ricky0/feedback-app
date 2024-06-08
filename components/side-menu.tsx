@@ -2,7 +2,15 @@
 import { useState, useContext } from "react";
 import { ProductContext } from "@/user-provider";
 
-export default function SideMenu() {
+export default function SideMenu({
+  live,
+  progress,
+  planned,
+}: {
+  live: number;
+  progress: number;
+  planned: number;
+}) {
   const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
   // const [sort, setSort] = useState("ALL");
   const { sort, setSort }: any = useContext(ProductContext);
@@ -17,7 +25,7 @@ export default function SideMenu() {
                 {options.map((option) => (
                   <li
                     onClick={() => setSort(option)}
-                    className={` px-4 py-[5px] last:w-[77px] hover:bg-tetiary-sea-blue cursor-pointer ${
+                    className={` px-4 py-[5px] last:w-[77px] hover:bg-tetiary-hov cursor-pointer ${
                       options.indexOf(option) === 3 && "col-span-2"
                     } ${
                       options.indexOf(option) === 4 && "col-span-2 w-[56px]"
@@ -49,13 +57,13 @@ export default function SideMenu() {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-[13px] text-tetiary-sea-blue p-6">
+                  <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-tetiary-sea-blue p-6">
                     View
                   </h3>
                   <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">
-                    <li>3</li>
-                    <li className="my-2">2</li>
-                    <li>1</li>
+                    <li>{planned}</li>
+                    <li className="my-2">{progress}</li>
+                    <li>{live}</li>
                   </ul>
                 </div>
               </div>

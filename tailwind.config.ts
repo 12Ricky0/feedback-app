@@ -30,6 +30,7 @@ const config: Config = {
         tetiary: {
           orange: "#F49F85",
           "sea-blue": "#62BCFA",
+          hov: "#CFD7FF",
         },
       },
     },

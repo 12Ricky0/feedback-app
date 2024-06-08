@@ -4,17 +4,19 @@ import FeedbackContainer from "@/components/containers/feedback";
 import FeedbackForm from "@/components/feeback-form";
 import RmComtainer from "@/components/containers/roadmap";
 import CommentContainer from "@/components/containers/comment-container";
-import { getAllUserProducts } from "@/libs/actions";
+import { getSuggestions, getRoadMap } from "@/libs/actions";
 
 export default async function Home() {
-  let data = await getAllUserProducts("all");
+  let data = await getSuggestions();
   let res = await data?.json();
+  let roadmap = await getRoadMap();
+  let r = await roadmap?.json();
   // console.log(res);
   return (
     <main className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full">
-      <Nav />
+      <Nav data={r} />
       <div className="w-full lg:ml-[30px] md:mt-10 lg:mt-0">
-        <Header />
+        {/* <Header /> */}
         <FeedbackContainer data={res} />
       </div>
       {/* <FeedbackForm /> */}

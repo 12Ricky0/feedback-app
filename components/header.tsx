@@ -1,23 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import SideMenu from "./side-menu";
+import { ProductContext } from "@/user-provider";
+import { ProductRequest } from "@/libs/definitions";
 
-export function Nav() {
-  const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
-  const [sort, setSort] = useState("ALL");
+export function Nav({ data }: { data: ProductRequest[] }) {
+  // const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
+  // const [sort, setSort] = useState("ALL");
+  const live = data.filter((d) => d.status === "live");
+  const progress = data.filter((d) => d.status === "in-progress");
+  const planned = data.filter((d) => d.status === "planned");
   const [isOpen, setIsOpen] = useState(false);
   return (
     <section className=" md:flex  lg:inline-block gap-[10px]">
-      <nav className="bg-bg-header lg:bg-bg-header-desktop md:bg-bg-header-tablet md:pt-[62px] bg-no-repeat bg-cover md:rounded-lg md:w-[240px] lg:w-[255px] md:h-[178px]">
-        <article className="flex justify-between mx-6 items-stretch ">
-          <article className="py-4 ">
-            <h1 className="font-bold text-white text-[15px]">
+      <nav className="bg-bg-header md:flex lg:bg-bg-header-desktop bg-center md:bg-bg-header-tablet md:pt-[62x] bg-no-repeat bg-cover md:rounded-lg md:w-[240px] lg:w-[255px] md:h-[178px] lg:h-[137px]">
+        <article className="flex justify-between mx-6 items-center md:items-end ">
+          <article className="py-4">
+            <h1 className="font-bold text-white text-[15px] md:text-[20px]">
               Frontend Mentor
             </h1>
-            <p className="font-medium text-[13px] text-white opacity-50">
+            <p className="font-medium text-[13px] md:text-[15px] text-white opacity-50">
               Feedback Board
             </p>
           </article>
@@ -27,23 +32,33 @@ export function Nav() {
             src={`/assets/shared/mobile/${
               isOpen ? "icon-close.svg" : "icon-hamburger.svg"
             }`}
-            className="md:hidden"
+            className="md:hidden "
             width={20}
             height={17}
           />
         </article>
       </nav>
 
-      {isOpen && <SideMenu />}
+      {isOpen && (
+        <SideMenu
+          live={live.length}
+          progress={progress.length}
+          planned={planned.length}
+        />
+      )}
       <div className="hidden md:block">
-        <SideMenu />
+        <SideMenu
+          live={live.length}
+          progress={progress.length}
+          planned={planned.length}
+        />
       </div>
     </section>
   );
 }
 
-export function Header() {
-  const [sort, setSort] = useState("Most Upvotes");
+export function Header({ count }: { count: number }) {
+  const { sortBy, setSortBy }: any = useContext(ProductContext);
   const [select, setSelect] = useState(false);
   const options = [
     "Most Upvotes",
@@ -63,7 +78,7 @@ export function Header() {
             height={24}
           />
           <span className="font-bold text-white text-[18px]">
-            6 Suggestions
+            {count} Suggestions
           </span>
         </div>
         <div
@@ -71,7 +86,7 @@ export function Header() {
           onClick={() => setSelect(!select)}
         >
           <span>Sort by :</span>
-          <span className="font-bold mr-2"> {sort}</span>
+          <span className="font-bold mr-2"> {sortBy}</span>
 
           <Image
             alt="down"
@@ -91,7 +106,7 @@ export function Header() {
                 >
                   <li
                     className=" px-4 hover:text-primary-voilet  py-3"
-                    onClick={() => setSort(option)}
+                    onClick={() => setSortBy(option)}
                   >
                     {option}
                   </li>
@@ -99,7 +114,7 @@ export function Header() {
                     alt="check"
                     src="/assets/shared/icon-check.svg"
                     className={` ${
-                      sort == option ? "inline-block" : "hidden"
+                      sortBy == option ? "inline-block" : "hidden"
                     } ease-in-out duration-200`}
                     width={11}
                     height={8}

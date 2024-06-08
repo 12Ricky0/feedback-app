@@ -10,9 +10,10 @@ export default function ProductProvider({
   children: React.ReactNode;
 }) {
   const [sort, setSort] = useState("ALL");
+  const [sortBy, setSortBy] = useState<string>("Most Upvotes");
 
   return (
-    <ProductContext.Provider value={{ sort, setSort }}>
+    <ProductContext.Provider value={{ sort, setSort, sortBy, setSortBy }}>
       {children}
     </ProductContext.Provider>
   );
