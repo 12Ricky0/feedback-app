@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Empty() {
   return (
@@ -27,7 +28,7 @@ export default function Empty() {
           width={8}
           height={8}
         />
-        Add Feedback
+        <Link href="/feedback/add">Add Feedback</Link>
       </button>
     </section>
   );

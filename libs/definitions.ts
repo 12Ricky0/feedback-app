@@ -11,6 +11,7 @@ export interface Comment {
 }
 
 export interface ProductRequest {
+  _id: string;
   id: number;
   title: string;
   category: string;

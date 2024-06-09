@@ -16,7 +16,7 @@ export function Nav({ data }: { data: ProductRequest[] }) {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <section className=" md:flex  lg:inline-block gap-[10px]">
-      <nav className="bg-bg-header md:flex lg:bg-bg-header-desktop bg-center md:bg-bg-header-tablet md:pt-[62x] bg-no-repeat bg-cover md:rounded-lg md:w-[240px] lg:w-[255px] md:h-[178px] lg:h-[137px]">
+      <nav className="bg-bg-header md:flex lg:bg-bg-header-desktop bg-center md:bg-bg-header-tablet md:pt-[62x] bg-no-repeat bg-cover md:rounded-lg md:w-[230px] lg:w-[255px] md:h-[178px] lg:h-[137px]">
         <article className="flex justify-between mx-6 items-center md:items-end ">
           <article className="py-4">
             <h1 className="font-bold text-white text-[15px] md:text-[20px]">
@@ -90,7 +90,7 @@ export function Header({ count }: { count: number }) {
 
           <Image
             alt="down"
-            src="/assets/shared/icon-arrow-down.svg"
+            src={`/assets/shared/icon-arrow-${select ? "up" : "down"}.svg`}
             className="inline-block"
             width={8}
             height={4}
@@ -134,7 +134,7 @@ export function Header({ count }: { count: number }) {
           width={8}
           height={8}
         />
-        Add Feedback
+        <Link href="/feedback/add">Add Feedback</Link>
       </button>
     </header>
   );
