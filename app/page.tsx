@@ -1,9 +1,5 @@
-import Image from "next/image";
-import { Nav, Header } from "@/components/header";
+import { Nav } from "@/components/header";
 import FeedbackContainer from "@/components/containers/feedback";
-import FeedbackForm from "@/components/feeback-form";
-import RmComtainer from "@/components/containers/roadmap";
-import CommentContainer from "@/components/containers/comment-container";
 import { getSuggestions, getRoadMap } from "@/libs/actions";
 
 export default async function Home() {
@@ -11,7 +7,6 @@ export default async function Home() {
   let res = await data?.json();
   let roadmap = await getRoadMap();
   let r = await roadmap?.json();
-  // console.log(res);
   return (
     <main className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full">
       <Nav data={r} />
@@ -24,6 +19,3 @@ export default async function Home() {
     </main>
   );
 }
-
-// className =
-//   "md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full";

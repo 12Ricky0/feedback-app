@@ -1,8 +1,4 @@
 "use client";
-import { useState } from "react";
-import data from "../../data.json";
-import Image from "next/image";
-import { ReplyForm } from "./forms";
 import { ProductRequest } from "@/libs/definitions";
 import ReplyCard from "./reply-card";
 
@@ -31,8 +27,6 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
             className={`${
               data.replies == 0 ? "md:border-b" : "md:border-l"
             }  md:ml-[20px] `}
-
-            // onClick={handleClick(data.id)}
           >
             <div className="mt-8">
               {data.replies.length > 0 &&

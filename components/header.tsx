@@ -8,8 +8,6 @@ import { ProductContext } from "@/user-provider";
 import { ProductRequest } from "@/libs/definitions";
 
 export function Nav({ data }: { data: ProductRequest[] }) {
-  // const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
-  // const [sort, setSort] = useState("ALL");
   const live = data.filter((d) => d.status === "live");
   const progress = data.filter((d) => d.status === "in-progress");
   const planned = data.filter((d) => d.status === "planned");
