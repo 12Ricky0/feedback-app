@@ -1,5 +1,6 @@
 import CommentCard from "@/components/containers/cards";
 import ProductCard from "@/components/containers/product-card";
+import { CommentForm } from "@/components/containers/forms";
 import { getProduct } from "@/libs/actions";
 import Back from "@/components/back";
 import Image from "next/image";
@@ -29,6 +30,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </section>
       <section>
         <CommentCard item={res} />
+        <CommentForm />
       </section>
     </main>
   );
