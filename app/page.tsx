@@ -11,11 +11,8 @@ export default async function Home() {
     <main className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full">
       <Nav data={r} />
       <div className="w-full lg:ml-[30px] md:mt-10 lg:mt-0">
-        {/* <Header /> */}
         <FeedbackContainer data={res} />
       </div>
-      {/* <FeedbackForm /> */}
-      {/* <CommentContainer /> */}
     </main>
   );
 }

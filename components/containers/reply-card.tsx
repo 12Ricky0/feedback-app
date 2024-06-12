@@ -1,8 +1,5 @@
 "use client";
-import FeedbackContainer from "./feedback";
-import CommentCard from "./cards";
 import { useState } from "react";
-import { CommentForm } from "./forms";
 import Image from "next/image";
 import { ReplyForm } from "./forms";
 
