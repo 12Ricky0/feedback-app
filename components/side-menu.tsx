@@ -1,7 +1,7 @@
 "use client";
 import { useState, useContext } from "react";
 import { ProductContext } from "@/user-provider";
-
+import { Suspense } from "react";
 export default function SideMenu({
   live,
   progress,
@@ -41,33 +41,34 @@ export default function SideMenu({
                 ))}
               </ul>
             </header>
-
-            <header className="bg-white rounded-lg my-6 md:my-0 lg:my-6 pb-6 md:w-[223px] md:h-[178px] lg:w-[255px]">
-              <div className="flex justify-between items-center">
-                <div>
-                  <h1 className="font-bold text-[18px] p-6 text-secondary-light-blue ">
-                    Roadmap
-                  </h1>
-                  <ul className="text-[16px] text-secondary-light-blue list-disc list-inside ml-6">
-                    <li className="marker:text-tetiary-orange ">Planned</li>
-                    <li className="marker:text-primary-voilet my-2">
-                      In-Progress
-                    </li>
-                    <li className="marker:text-tetiary-sea-blue">Live</li>
-                  </ul>
+            <Suspense fallback={"Loading.."}>
+              <header className="bg-white rounded-lg my-6 md:my-0 lg:my-6 pb-6 md:w-[223px] md:h-[178px] lg:w-[255px]">
+                <div className="flex justify-between items-center">
+                  <div>
+                    <h1 className="font-bold text-[18px] p-6 text-secondary-light-blue ">
+                      Roadmap
+                    </h1>
+                    <ul className="text-[16px] text-secondary-light-blue list-disc list-inside ml-6">
+                      <li className="marker:text-tetiary-orange ">Planned</li>
+                      <li className="marker:text-primary-voilet my-2">
+                        In-Progress
+                      </li>
+                      <li className="marker:text-tetiary-sea-blue">Live</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-tetiary-sea-blue p-6">
+                      View
+                    </h3>
+                    <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">
+                      <li>{planned}</li>
+                      <li className="my-2">{progress}</li>
+                      <li>{live}</li>
+                    </ul>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-tetiary-sea-blue p-6">
-                    View
-                  </h3>
-                  <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">
-                    <li>{planned}</li>
-                    <li className="my-2">{progress}</li>
-                    <li>{live}</li>
-                  </ul>
-                </div>
-              </div>
-            </header>
+              </header>
+            </Suspense>
           </div>
         </div>
       </div>
