@@ -1,11 +1,13 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Back from "./back";
+import { ProductRequest } from "@/libs/definitions";
+import { ProductContext } from "@/user-provider";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
-  const [sort, setSort] = useState("Feature");
+  const { category, setCategory }: any = useContext(ProductContext);
 
   return (
     <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
@@ -17,7 +19,7 @@ function SelectOption() {
           >
             <li
               className=" px-4 hover:text-primary-voilet  py-3"
-              onClick={() => setSort(option)}
+              onClick={() => setCategory(option)}
             >
               {option}
             </li>
@@ -25,7 +27,40 @@ function SelectOption() {
               alt="check"
               src="/assets/shared/icon-check.svg"
               className={` ${
-                sort == option ? "inline-block" : "hidden"
+                category == option ? "inline-block" : "hidden"
+              } ease-in-out duration-200`}
+              width={11}
+              height={8}
+            />
+          </div>
+        ))}
+      </ul>
+    </div>
+  );
+}
+function Status() {
+  const options = ["Suggestions", "Planned", "In-Progress", "Live"];
+  const [status, setStatus] = useState("Suggestions");
+
+  return (
+    <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
+      <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
+        {options.map((option) => (
+          <div
+            key={options.indexOf(option)}
+            className="flex items-center justify-between pr-6 border-b last:border-b-0"
+          >
+            <li
+              className=" px-4 hover:text-primary-voilet  py-3"
+              onClick={() => setStatus(option)}
+            >
+              {option}
+            </li>
+            <Image
+              alt="check"
+              src="/assets/shared/icon-check.svg"
+              className={` ${
+                status == option ? "inline-block" : "hidden"
               } ease-in-out duration-200`}
               width={11}
               height={8}
@@ -37,9 +72,10 @@ function SelectOption() {
   );
 }
 
-export default function FeedbackForm() {
-  const [sort, setSort] = useState("Feature");
+export default function EditForm({ product }: { product: ProductRequest }) {
+  const { category, setCategory }: any = useContext(ProductContext);
   const [isOpen, setIsOpen] = useState(false);
+  const [isStatus, setIsStatus] = useState(false);
 
   return (
     <div>
@@ -47,7 +83,7 @@ export default function FeedbackForm() {
       <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px] md:mt-10 relative">
         <Image
           alt="check"
-          src="/assets/shared/icon-new-feedback.svg"
+          src="/assets/shared/icon-edit-feedback.svg"
           width={40}
           height={40}
           className="absolute md:size-14 md:-translate-y-7 -translate-y-5 mx-6"
@@ -71,6 +107,7 @@ export default function FeedbackForm() {
             name="title"
             id="title"
             autoComplete="on"
+            defaultValue={product.title}
             className="w-full pl-4 text-secondary-light-blue text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
           <label
@@ -91,7 +128,8 @@ export default function FeedbackForm() {
                 type="text"
                 readOnly
                 className="focus:outline-none bg-inherit"
-                defaultValue={sort}
+                defaultValue={product.category}
+                value={category}
               />
               <Image
                 alt="down"
@@ -102,6 +140,41 @@ export default function FeedbackForm() {
               />
             </div>
             {isOpen && <SelectOption />}
+          </div>
+
+          <label
+            className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
+            htmlFor="status"
+          >
+            Update Status
+          </label>
+          <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
+            Change feedback state
+          </span>
+
+          <div>
+            <div
+              onClick={() => setIsStatus(!isStatus)}
+              className="w-full px-4 text-secondary-light-blue md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
+            >
+              <input
+                type="text"
+                readOnly
+                className="focus:outline-none bg-inherit"
+                defaultValue={product.status}
+                // value={category}
+              />
+              <Image
+                alt="down"
+                src={`/assets/shared/icon-arrow-${
+                  isStatus ? "up" : "down"
+                }.svg`}
+                className="inline-flex"
+                width={8}
+                height={4}
+              />
+            </div>
+            {isStatus && <Status />}
           </div>
 
           <label
@@ -120,17 +193,23 @@ export default function FeedbackForm() {
             maxLength={255}
             rows={5}
             autoComplete="on"
+            defaultValue={product.description}
             className="w-full pl-4 text-secondary-light-blue text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
-          <div className="mt-10 pb-6 md:flex flex-row-reverse gap-4">
-            <button
-              className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
-              type="submit"
-            >
-              Add Feedback
-            </button>
-            <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
-              Cancel
+          <div className="mt-10 pb-6 md:flex flex-row-reverse justify-between gap-4">
+            <div className=" md:flex flex-row-reverse gap-4">
+              <button
+                className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
+                type="submit"
+              >
+                Add Feedback
+              </button>
+              <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+                Cancel
+              </button>
+            </div>
+            <button className="border-none rounded-lg md:w-[93px] w-full bg-tetiary-red mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+              Delete
             </button>
           </div>
         </form>

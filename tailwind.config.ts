@@ -31,6 +31,7 @@ const config: Config = {
           orange: "#F49F85",
           "sea-blue": "#62BCFA",
           hov: "#CFD7FF",
+          red: "#D73737",
         },
       },
     },

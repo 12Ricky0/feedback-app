@@ -1,4 +1,4 @@
-import FeedbackForm from "@/components/feeback-form";
+import FeedbackForm from "@/components/feedback-form";
 
 export default async function Add() {
   return (

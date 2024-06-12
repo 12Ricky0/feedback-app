@@ -23,7 +23,7 @@ export default async function Page({ params }: { params: { id: string } }) {
               width={8}
               height={8}
             />
-            <Link href="/feedback/add">Edit Feedback</Link>
+            <Link href={`/feedback/edit/${params.id}`}>Edit Feedback</Link>
           </button>
         </div>
         <ProductCard item={res} />
