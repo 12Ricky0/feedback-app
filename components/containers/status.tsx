@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { ProductRequest } from "@/libs/definitions";
-import Upvotes from "../upvote";
 
 export default function StatusContainer({
   title,

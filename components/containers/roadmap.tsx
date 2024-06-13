@@ -12,18 +12,6 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
   const progress = info.filter((d) => d.status === "in-progress");
   const live = info.filter((d) => d.status === "live");
 
-  function get_alingment(status: string) {
-    switch (status) {
-      case "in-progress":
-        return "md:justify-center";
-
-      case "planned":
-        return "md:justify-end";
-
-      default:
-        "md:justify-left";
-    }
-  }
   return (
     <section className="">
       <header className="bg-primary-dark-blue py-[26px] md:rounded-lg flex justify-between items-center">
