@@ -2,9 +2,15 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import Back from "../back";
+import { ProductRequest } from "@/libs/definitions";
+import StatusContainer from "./status";
 
-export default function RmComtainer({ info }: { info: any }) {
+export default function RmComtainer({ info }: { info: ProductRequest[] }) {
   const [roadmap, setRoadmap] = useState("planned");
+  const planned = info.filter((d) => d.status === "planned");
+  const progress = info.filter((d) => d.status === "in-progress");
+  const live = info.filter((d) => d.status === "live");
 
   function get_alingment(status: string) {
     switch (status) {
@@ -19,10 +25,10 @@ export default function RmComtainer({ info }: { info: any }) {
     }
   }
   return (
-    <section className="w-full">
+    <section className="">
       <header className="bg-primary-dark-blue py-[26px] md:rounded-lg flex justify-between items-center">
         <div className="ml-6">
-          <div>
+          {/* <div>
             <Image
               alt="ar-left"
               src="/assets/shared/icon-arrow-left.svg"
@@ -32,7 +38,8 @@ export default function RmComtainer({ info }: { info: any }) {
             />
 
             <span className="font-bold text-[13px] text-white">Go Back</span>
-          </div>
+          </div> */}
+          <Back />
           <h1 className="font-bold text-[18px] text-white">Roadmap</h1>
         </div>
         <button className="bg-primary-voilet text-[13px] font-bold text-white h-10 mr-6 rounded-lg w-[134px]">
@@ -77,76 +84,77 @@ export default function RmComtainer({ info }: { info: any }) {
         </h1>
       </div>
 
-      <article className="m-6 ">
-        <h1 className="font-bold text-[18px] text-secondary-dark-gray">
-          In-Progess
-        </h1>
-        <p className="text-[13px] text-secondary-light-blue mt-1">
-          Features currently being developed
-        </p>
-      </article>
+      <section className="md:flex md:flex-col lg:flex-row justify-center mx-auto max-w-[1100px] w-full gap-[30px]">
+        <div>
+          <article className="m-6 ">
+            <h1 className="font-bold text-[18px] text-secondary-dark-gray">
+              Planned ({planned.length})
+            </h1>
+            <p className="text-[13px] text-secondary-light-blue mt-1">
+              Features currently being developed
+            </p>
+          </article>
 
-      {/* <div className="flex items-start justify-center"> */}
-      {info?.map((d: any) => (
-        <div
-          key={d.id}
-          className={`mr-0 items-start flex ${get_alingment(d.status)} ${
-            d.status == "suggestion" && "hidden"
-          }`}
-        >
-          <div
-            className={`bg-white rounded-lg border-t-[6px] md:w-[350px] ${
-              d.status == "planned" && "border-t-tetiary-orange"
-            } ${d.status == "live" && "border-t-tetiary-sea-blue"} ${
-              d.status == "in-progress" && "border-t-primary-voilet"
-            } mx-6 md:mx-0 pb-6 mb-[16px]`}
-          >
-            <div className="mx-6 marker:text-primary-voilet">
-              <li className="marker:text-primary-voilet my-2 text-[13px] text-secondary-light-blue mt-[22px]">
-                {d.status}
-              </li>
+          {planned?.map((d: any) => (
+            <div key={d.id}>
+              <StatusContainer
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
             </div>
-            <article className="mx-6 mt-[16px]">
-              <h1 className="font-bold text-[13px] text-secondary-dark-gray">
-                One-click portfolio generation
-              </h1>
-              <p className="text-[13px] text-secondary-light-blue my-[9px]">
-                Add ability to create professional looking portfolio from
-                profile.
-              </p>
-              <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
-                Feature
-              </span>
-
-              <div className="mt-[16px] flex justify-between items-center">
-                <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
-                  <Image
-                    alt="down"
-                    src="/assets/shared/icon-arrow-up.svg"
-                    className="inline-block mr-2"
-                    width={8}
-                    height={4}
-                  />
-
-                  <span className="font-bold">112</span>
-                </div>
-
-                <div className="">
-                  <Image
-                    alt="down"
-                    src="/assets/shared/icon-comments.svg"
-                    className="inline-block mr-2"
-                    width={18}
-                    height={16}
-                  />
-                  <span className="font-bold ">2</span>
-                </div>
-              </div>
-            </article>
-          </div>
+          ))}
         </div>
-      ))}
-      {/* </div> */}
+        <div>
+          <article className="m-6 ">
+            <h1 className="font-bold text-[18px] text-secondary-dark-gray">
+              In-Progess ({progress.length})
+            </h1>
+            <p className="text-[13px] text-secondary-light-blue mt-1">
+              Features currently being developed
+            </p>
+          </article>
+
+          {progress?.map((d: any) => (
+            <div key={d.id}>
+              <StatusContainer
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
+            </div>
+          ))}
+        </div>
+        <div>
+          <article className="m-6 ">
+            <h1 className="font-bold text-[18px] text-secondary-dark-gray">
+              Live ({live.length})
+            </h1>
+            <p className="text-[13px] text-secondary-light-blue mt-1">
+              Features currently being developed
+            </p>
+          </article>
+
+          {live?.map((d: any) => (
+            <div key={d.id}>
+              <StatusContainer
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
     </section>
   );
 }

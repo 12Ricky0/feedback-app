@@ -2,6 +2,7 @@
 import { useState, useContext } from "react";
 import { ProductContext } from "@/user-provider";
 import { Suspense } from "react";
+import Link from "next/link";
 export default function SideMenu({
   live,
   progress,
@@ -58,7 +59,7 @@ export default function SideMenu({
                   </div>
                   <div>
                     <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-tetiary-sea-blue p-6">
-                      View
+                      <Link href="/roadmap">View</Link>
                     </h3>
                     <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">
                       <li>{planned}</li>
