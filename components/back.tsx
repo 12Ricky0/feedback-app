@@ -2,12 +2,12 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export default function Back() {
+export default function Back({ className }: { className?: string }) {
   const router = useRouter();
   return (
     <div
       onClick={router.back}
-      className="mx-6 md:mx-0 mt-[35px] md:mt-0 cursor-pointer"
+      className={`${className}mx-6 md:mx-0 mt-[35px] md:mt-0 cursor-pointer`}
     >
       <Image
         alt="ar-left"
@@ -17,7 +17,9 @@ export default function Back() {
         height={8}
       />
 
-      <span className="font-bold text-[13px] md:text-[14px] text-secondary-light-blue">
+      <span
+        className={`${className} font-bold text-[13px] md:text-[14px] text-secondary-light-blue`}
+      >
         Go Back
       </span>
     </div>
