@@ -66,7 +66,7 @@ export function Header({ count }: { count: number }) {
   ];
   return (
     <header className="bg-primary-dark-blue flex justify-between items-center py-2 md:py-[14px] md:rounded-lg">
-      <div className="text-[13px] md:text-[14px] inline-flex items-center gap-[38px] text-secondary-light-gray ml-6">
+      <div className="text-[13px] md:text-[14px] hover:text-secondary-light-blue hover:ease-in-out duration-200 inline-flex items-center gap-[38px] text-secondary-light-gray ml-6">
         <div className="hidden md:inline-flex items-center ">
           <Image
             alt="suggestion"
@@ -124,7 +124,7 @@ export function Header({ count }: { count: number }) {
         )}
       </div>
 
-      <button className="bg-primary-voilet text-[13px] font-bold text-white h-10 mr-6 rounded-lg w-[134px]">
+      <button className="bg-primary-voilet text-[13px] font-bold text-white h-10 mr-6 hover:bg-purple-400 rounded-lg w-[134px]">
         <Image
           alt="down"
           src="/assets/shared/icon-plus.svg"

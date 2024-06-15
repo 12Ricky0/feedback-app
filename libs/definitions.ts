@@ -4,10 +4,17 @@ export interface User {
   username: string;
 }
 
+export interface Replies {
+  content: string;
+  replyingTo: string;
+  user: User;
+}
+
 export interface Comment {
   id: number;
   content: string;
   user: User;
+  replies?: Replies[];
 }
 
 export interface ProductRequest {

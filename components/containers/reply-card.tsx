@@ -11,8 +11,7 @@ export default function ReplyCard({
   id,
   className,
   children,
-}: // onClick,
-{
+}: {
   name: string;
   userName: string;
   content: string;
@@ -20,7 +19,6 @@ export default function ReplyCard({
   id: number;
   className?: string;
   children?: React.ReactNode;
-  // onClick: React.MouseEventHandler<HTMLButtonElement>;
 }) {
   const [activeForm, setActiveForm] = useState(0);
 
@@ -63,7 +61,7 @@ export default function ReplyCard({
 
         {activeForm == id && (
           <div className="ml-[56px]">
-            <ReplyForm />
+            <ReplyForm userName={userName} />
           </div>
         )}
 

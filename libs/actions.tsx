@@ -1,6 +1,7 @@
 import UserProduct from "@/models/productRequest";
 import { dbConnect } from "./dbConnect";
-["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
+// ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
+import { Replies } from "./definitions";
 
 export async function getSuggestions() {
   try {
@@ -45,4 +46,20 @@ export async function getProduct(query: string) {
     let res = await UserProduct.findOne({ _id: query });
     return Response.json(res);
   } catch (error) {}
+}
+
+interface Reply {
+  replyTo: string;
+  name: String;
+}
+
+export async function getReplies(formData: FormData) {
+  try {
+    const reply = formData.get("reply");
+    const userName = formData?.get("userName");
+
+    console.log(reply);
+  } catch (error) {
+    console.error(error);
+  }
 }

@@ -1,10 +1,10 @@
 "use client";
-import { ProductRequest } from "@/libs/definitions";
+import { ProductRequest, Comment } from "@/libs/definitions";
 import ReplyCard from "./reply-card";
 
 export default function CommentCard({ item }: { item: ProductRequest }) {
   let total = 0;
-  item.comments.forEach((comment: any) => {
+  item.comments.forEach((comment: Comment) => {
     total++;
     if (comment.replies) {
       total += comment.replies.length;
@@ -25,13 +25,14 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
             userName={`@${data.user.username}`}
             content={data.content}
             className={`${
-              data.replies == 0 ? "md:border-b" : "md:border-l"
+              data.replies?.length == 0 ? "md:border-b" : "md:border-l"
             }  md:ml-[20px] `}
           >
             <div className="mt-8">
-              {data.replies.length > 0 &&
+              {data.replies &&
+                data.replies.length > 0 &&
                 data.replies.map((reply) => (
-                  <div className="" key={reply.id}>
+                  <div className="" key={data.id}>
                     <ReplyCard
                       id={data.id}
                       src={reply.user.image.split(".")[1] + ".jpg"}

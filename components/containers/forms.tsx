@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { getReplies } from "@/libs/actions";
+import { useFormState } from "react-dom";
 
 export function CommentForm() {
   const [count, setCount] = useState(250);
@@ -46,12 +48,16 @@ export function CommentForm() {
   );
 }
 
-export function ReplyForm() {
+export function ReplyForm({ userName }: { userName: string }) {
+  const initialState = { message: null, errors: {} };
+
+  // const [state, dispatch] = useFormState(getReplies, initialState);
+
   return (
     <form action="" className="mt-6 flex gap-4 items-start ">
+      <input type="hidden" name="username" value={userName} />
       <textarea
         name="reply"
-        id=""
         maxLength={250}
         rows={4}
         placeholder="Type your comment here"
