@@ -1,7 +1,10 @@
+"use server";
+
 import UserProduct from "@/models/productRequest";
 import { dbConnect } from "./dbConnect";
 // ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
 import { Replies } from "./definitions";
+import { redirect } from "next/navigation";
 
 export async function getSuggestions() {
   try {
@@ -49,17 +52,21 @@ export async function getProduct(query: string) {
 }
 
 interface Reply {
-  replyTo: string;
-  name: String;
+  replyTo?: string;
+  name?: String;
 }
 
-export async function getReplies(formData: FormData) {
+export async function getReplies(prevState: any, formData: FormData) {
   try {
     const reply = formData.get("reply");
-    const userName = formData?.get("userName");
+    const userName = formData.get("username");
 
     console.log(reply);
+    console.log(userName);
+    return { reply, userName };
   } catch (error) {
     console.error(error);
   }
+
+  redirect("/");
 }

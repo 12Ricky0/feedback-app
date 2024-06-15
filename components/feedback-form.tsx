@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useState, useContext } from "react";
 import Back from "./back";
 import { ProductContext } from "@/user-provider";
+import { useActionState } from "react";
+import { getReplies } from "@/libs/actions";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
@@ -41,6 +43,8 @@ function SelectOption() {
 export default function FeedbackForm() {
   const [isOpen, setIsOpen] = useState(false);
   const { category }: any = useContext(ProductContext);
+  // const [state, dispatch] = useActionState(getReplies, null);
+  // const r = getReplies();
 
   return (
     <div>

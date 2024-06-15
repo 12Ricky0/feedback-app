@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { User } from "@/libs/definitions";
 
 export const userSchema = new mongoose.Schema<User>({
@@ -7,7 +7,7 @@ export const userSchema = new mongoose.Schema<User>({
   username: String,
 });
 
-const CurrentUser =
+const CurrentUser: Model<User> =
   mongoose.models.CurrentUser ||
   mongoose.model<User>("CurrentUser", userSchema);
 

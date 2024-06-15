@@ -1,4 +1,6 @@
-export interface User {
+import mongoose, { Document, Model } from "mongoose";
+
+export interface User extends Document {
   image: string;
   name: string;
   username: string;

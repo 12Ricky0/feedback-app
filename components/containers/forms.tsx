@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
-import { getReplies } from "@/libs/actions";
+import { getReplies, getProduct } from "@/libs/actions";
+// import { useAc } from "react-dom";
+import { useActionState } from "react";
 import { useFormState } from "react-dom";
 
 export function CommentForm() {
@@ -15,6 +17,7 @@ export function CommentForm() {
       setCount(250 - value.length);
     }
   }
+  // const [state, dispatch] = useActionState(getReplies, null);
 
   return (
     <form className="bg-white mx-6 md:mx-0 my-6 rounded-lg" action="">
@@ -49,12 +52,9 @@ export function CommentForm() {
 }
 
 export function ReplyForm({ userName }: { userName: string }) {
-  const initialState = { message: null, errors: {} };
-
-  // const [state, dispatch] = useFormState(getReplies, initialState);
-
+  const [message, formAction] = useFormState(getReplies, null);
   return (
-    <form action="" className="mt-6 flex gap-4 items-start ">
+    <form action={formAction} className="mt-6 flex gap-4 items-start ">
       <input type="hidden" name="username" value={userName} />
       <textarea
         name="reply"

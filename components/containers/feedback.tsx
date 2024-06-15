@@ -37,22 +37,6 @@ export default function FeedbackContainer({
     });
   }
 
-  function get_status(status: string) {
-    switch (status) {
-      case "enhancement":
-        return "Enhancement";
-
-      case "bug":
-        return "Bug";
-      case "feature":
-        return "Feature";
-      case "UX":
-        return "UX";
-      case "UI":
-        return "UI";
-    }
-  }
-
   return (
     <section>
       <Header count={items.length} />
@@ -65,67 +49,6 @@ export default function FeedbackContainer({
           >
             <ProductCard item={item} />
           </Link>
-          // <div
-          //   key={item.id}
-          //   className="bg-white group mx-6 last:mb-[55px] md:mx-0 text-[13px] mt-4 cursor-pointer rounded-lg"
-          // >
-          //   <Link href={`/feedback/details/${item._id}`}>
-          //     <article className="p-6 md:flex justify-between items-center">
-          //       <div className="md:inline-flex gap-10">
-          //         <Upvotes vote={item.upvotes} />
-          //         <article>
-          //           <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
-          //             {item.title}
-          //           </h1>
-          //           <p className="mt-2 mb-[12px] text-secondary-light-blue md:text-[16px]">
-          //             {item.description}
-          //           </p>
-          //           <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
-          //             {get_status(item.category)}
-          //           </span>
-          //         </article>
-          //       </div>
-          //       <div className="hidden md:inline-flex items-center">
-          //         <Image
-          //           alt="down"
-          //           src="/assets/shared/icon-comments.svg"
-          //           className="mr-2"
-          //           width={18}
-          //           height={16}
-          //         />
-          //         <span
-          //           className={`${
-          //             item.comments.length === 0 && "opacity-40"
-          //           } font-bold md:text-[16px]`}
-          //         >
-          //           {item.comments.length}
-          //         </span>
-          //       </div>
-
-          //       {/* mobile view */}
-          //       <div className="flex justify-between mt-4 items-center md:hidden">
-          //         <Upvotes vote={item.upvotes} />
-          //         <div className="flex items-center">
-          //           <Image
-          //             alt="down"
-          //             src="/assets/shared/icon-comments.svg"
-          //             className=" mr-2"
-          //             width={18}
-          //             height={16}
-          //           />
-          //           <span
-          //             className={`${
-          //               item.comments.length === 0 && "opacity-40"
-          //             } font-bold md:text-[16px]`}
-          //           >
-          //             {item.comments.length}
-          //           </span>{" "}
-          //         </div>
-          //       </div>
-          //       {/* mobile view */}
-          //     </article>
-          //   </Link>
-          // </div>
         ))
       ) : (
         <Empty />

@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <section>
         <div className="flex justify-between items-center">
           <Back />
-          <button className="bg-primary-light-blue text-[13px] font-bold text-white h-10 mr-6 rounded-lg w-[134px]">
+          <button className="bg-primary-light-blue text-[13px] font-bold text-white h-10 rounded-lg w-[134px]">
             <Image
               alt="down"
               src="/assets/shared/icon-plus.svg"
