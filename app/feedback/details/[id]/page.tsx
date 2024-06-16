@@ -30,7 +30,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </section>
       <section>
         <CommentCard item={res} />
-        <CommentForm />
+        <CommentForm _id={params.id} />
       </section>
     </main>
   );

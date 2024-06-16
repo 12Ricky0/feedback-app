@@ -3,8 +3,10 @@ import Image from "next/image";
 import { useState, useContext } from "react";
 import Back from "./back";
 import { ProductContext } from "@/user-provider";
+import { useRouter } from "next/navigation";
 import { useActionState } from "react";
-import { getReplies } from "@/libs/actions";
+import { useFormState } from "react-dom";
+import { createFeedback } from "@/libs/actions";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
@@ -43,9 +45,10 @@ function SelectOption() {
 export default function FeedbackForm() {
   const [isOpen, setIsOpen] = useState(false);
   const { category }: any = useContext(ProductContext);
-  // const [state, dispatch] = useActionState(getReplies, null);
-  // const r = getReplies();
 
+  const [message, formAction] = useFormState(createFeedback, null);
+
+  const router = useRouter();
   return (
     <div>
       <Back />
@@ -61,7 +64,7 @@ export default function FeedbackForm() {
           Create New Feedback
         </h1>
 
-        <form action="" className="mx-6">
+        <form action={formAction} className="mx-6">
           <label
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray"
             htmlFor="title"
@@ -76,8 +79,18 @@ export default function FeedbackForm() {
             name="title"
             id="title"
             autoComplete="on"
-            className="w-full pl-4 text-secondary-light-blue text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
+            className={`w-full pl-4 text-secondary-light-blue text-[13px] h-12 ${
+              message?.errors.title && "outline-tetiary-red outline-1 outline"
+            } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
+          {message?.errors.title && (
+            <div className="">
+              <p className="text-[13px] md:text-[14px] text-tetiary-red">
+                {message.errors.description}
+              </p>
+            </div>
+          )}
+
           <label
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
             htmlFor="category"
@@ -94,9 +107,10 @@ export default function FeedbackForm() {
             >
               <input
                 type="text"
+                name="cat"
                 readOnly
                 className="focus:outline-none bg-inherit"
-                defaultValue={category}
+                value={category}
               />
               <Image
                 alt="down"
@@ -125,8 +139,18 @@ export default function FeedbackForm() {
             maxLength={255}
             rows={5}
             autoComplete="on"
-            className="w-full pl-4 text-secondary-light-blue text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
+            className={`w-full pl-4 text-secondary-light-blue text-[13px] ${
+              message?.errors.description &&
+              "outline-tetiary-red outline-1 outline"
+            } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
+          {message?.errors.description && (
+            <div className="">
+              <p className="text-[13px] md:text-[14px] text-tetiary-red">
+                {message.errors.description}
+              </p>
+            </div>
+          )}
           <div className="mt-10 pb-6 md:flex flex-row-reverse gap-4">
             <button
               className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
@@ -134,7 +158,10 @@ export default function FeedbackForm() {
             >
               Add Feedback
             </button>
-            <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+            <button
+              onClick={router.back}
+              className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]"
+            >
               Cancel
             </button>
           </div>

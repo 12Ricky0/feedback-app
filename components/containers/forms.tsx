@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import { getReplies, getProduct } from "@/libs/actions";
+import { getReplies, postComment } from "@/libs/actions";
 // import { useAc } from "react-dom";
 import { useActionState } from "react";
 import { useFormState } from "react-dom";
 
-export function CommentForm() {
+export function CommentForm({ _id }: { _id: string }) {
   const [count, setCount] = useState(250);
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -17,15 +17,17 @@ export function CommentForm() {
       setCount(250 - value.length);
     }
   }
-  // const [state, dispatch] = useActionState(getReplies, null);
+  const [message, formAction] = useFormState(postComment, null);
 
   return (
-    <form className="bg-white mx-6 md:mx-0 my-6 rounded-lg" action="">
+    <form className="bg-white mx-6 md:mx-0 my-6 rounded-lg" action={formAction}>
       <h1 className="py-6 mx-6 font-bold text-[18px] text-secondary-dark-gray">
         Add Comment
       </h1>
 
       <div className="mx-6 mb-[16px]">
+        <input type="hidden" name="post_id" value={_id} />
+
         <textarea
           onChange={handleChange}
           name="comment"
