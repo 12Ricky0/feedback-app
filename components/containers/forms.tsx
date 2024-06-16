@@ -51,11 +51,23 @@ export function CommentForm() {
   );
 }
 
-export function ReplyForm({ userName }: { userName: string }) {
+export function ReplyForm({
+  userName,
+  _id,
+  onSubmit,
+  commentId,
+}: {
+  userName: string;
+  _id: string;
+  commentId: string;
+  onSubmit: any;
+}) {
   const [message, formAction] = useFormState(getReplies, null);
   return (
     <form action={formAction} className="mt-6 flex gap-4 items-start ">
+      <input type="hidden" name="post-id" value={_id} />
       <input type="hidden" name="username" value={userName} />
+      <input type="hidden" name="comment_id" value={commentId} />
       <textarea
         name="reply"
         maxLength={250}
@@ -66,6 +78,7 @@ export function ReplyForm({ userName }: { userName: string }) {
       <button
         className="rounded-lg text-[13px]  font-bold bg-primary-voilet py-[10px] w-[117px] text-white"
         type="submit"
+        onSubmit={onSubmit}
       >
         Post Reply
       </button>

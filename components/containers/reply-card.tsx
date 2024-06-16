@@ -9,6 +9,9 @@ export default function ReplyCard({
   content,
   src,
   id,
+  _id,
+  commentId,
+  replyto,
   className,
   children,
 }: {
@@ -17,6 +20,9 @@ export default function ReplyCard({
   content: string;
   src: string;
   id: number;
+  _id: string;
+  commentId?: string;
+  replyto?: string;
   className?: string;
   children?: React.ReactNode;
 }) {
@@ -56,12 +62,18 @@ export default function ReplyCard({
       </div>
       <div className={`${className} md:pl-[60p]`}>
         <p className="text-[13px] md:ml-[56px] md:text-[15px] text-secondary-light-blue ">
+          <span className="text-primary-voilet font-bold">{replyto} </span>
           {content}{" "}
         </p>
 
         {activeForm == id && (
           <div className="ml-[56px]">
-            <ReplyForm userName={userName} />
+            <ReplyForm
+              userName={userName}
+              _id={_id}
+              commentId={commentId!}
+              onSubmit={() => setActiveForm(0)}
+            />
           </div>
         )}
 

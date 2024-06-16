@@ -20,6 +20,8 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
         <div key={data.id} className="">
           <ReplyCard
             id={data.id}
+            _id={item._id}
+            commentId={data.user._id?.toString()}
             src={data.user.image.split(".")[1] + ".jpg"}
             name={data.user.name}
             userName={`@${data.user.username}`}
@@ -35,8 +37,11 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
                   <div className="" key={data.id}>
                     <ReplyCard
                       id={data.id}
+                      _id={item._id}
+                      commentId={data.user._id?.toString()}
                       src={reply.user.image.split(".")[1] + ".jpg"}
                       name={reply.user.name}
+                      replyto={`@${reply.replyingTo}`}
                       content={reply.content}
                       userName={`@${reply.user.username}`}
                       className="ml-[16px]"
