@@ -13,8 +13,8 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <main className=" mx-auto max-w-[730px] w-full">
       <section>
-        <div className="flex justify-between items-center">
-          <Back />
+        <div className="flex mx-6 md:mx-0 mt-6 md:mt-0 justify-between items-center">
+          <Back className="mt-0" />
           <button className="bg-primary-light-blue text-[13px] font-bold text-white h-10 rounded-lg w-[134px]">
             <Image
               alt="down"

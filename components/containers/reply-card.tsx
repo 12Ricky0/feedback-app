@@ -67,7 +67,7 @@ export default function ReplyCard({
         </p>
 
         {activeForm == id && (
-          <div className="ml-[56px]">
+          <div className="md:ml-[56px]">
             <ReplyForm
               userName={userName}
               _id={_id}
