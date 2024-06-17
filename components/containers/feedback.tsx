@@ -18,7 +18,8 @@ export default function FeedbackContainer({
   sort == "ALL"
     ? (items = data)
     : (items = data.filter(
-        (item: ProductRequest) => item.category == sort.toLowerCase()
+        (item: ProductRequest) =>
+          item.category.toLowerCase() == sort.toLowerCase()
       ));
   // console.log(items);
 

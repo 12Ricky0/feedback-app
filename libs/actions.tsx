@@ -198,7 +198,7 @@ export async function createFeedback(prevState: any, formData: FormData) {
       validatedData.data;
     const feedback = {
       title: title,
-      category: category,
+      category: category == "UI" || "UX" ? category : category.toLowerCase(),
       upvotes: upvotes,
       status: status,
       description: description,
