@@ -22,11 +22,11 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
   return (
     <div className="bg-white group mx-6 md:mx-0 text-[13px] mt-4 cursor-pointer rounded-lg">
       <article className="p-6 md:flex justify-between items-center">
-        <div className="md:inline-flex gap-10">
+        <div className="md:inline-flex">
           <div className="hidden md:inline-flex">
             <Upvotes vote={item.upvotes} />
           </div>
-          <article className="md:">
+          <article className="mx-10">
             <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
               {item.title}
             </h1>
@@ -38,23 +38,21 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
             </span>
           </article>
         </div>
-        <div className="">
-          <div className="hidden md:inline-flex items-center">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-comments.svg"
-              className="mr-2"
-              width={18}
-              height={16}
-            />
-            <span
-              className={`${
-                item.comments.length === 0 && "opacity-40"
-              } font-bold md:text-[16px]`}
-            >
-              {item.comments.length}
-            </span>
-          </div>
+        <div className="hidden md:inline-flex items-center">
+          <Image
+            alt="down"
+            src="/assets/shared/icon-comments.svg"
+            className="mr-2"
+            width={18}
+            height={16}
+          />
+          <span
+            className={`${
+              item.comments.length === 0 && "opacity-40"
+            } font-bold md:text-[16px]`}
+          >
+            {item.comments.length}
+          </span>
         </div>
         {/* mobile view */}
         <div className="flex justify-between mt-4 items-center md:hidden">

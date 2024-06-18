@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
 import { getReplies, postComment } from "@/libs/actions";
-// import { useAc } from "react-dom";
 import { useActionState } from "react";
 import { useFormState } from "react-dom";
 

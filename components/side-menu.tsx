@@ -13,7 +13,6 @@ export default function SideMenu({
   planned: number;
 }) {
   const options = ["ALL", "UI", "UX", "Enhancement", "Bug", "Feature"];
-  // const [sort, setSort] = useState("ALL");
   const { sort, setSort }: any = useContext(ProductContext);
 
   return (
