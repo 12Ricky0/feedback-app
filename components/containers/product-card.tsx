@@ -21,12 +21,12 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
   }
   return (
     <div className="bg-white group mx-6 md:mx-0 text-[13px] mt-4 cursor-pointer rounded-lg">
-      <article className="p-6 md:flex justify-between items-center">
-        <div className="md:inline-flex">
+      <article className="py-[28px] mx-8 md:grid grid-cols-two justify-center items-center">
+        <div className="md:inline-flex ">
           <div className="hidden md:inline-flex">
             <Upvotes vote={item.upvotes} />
           </div>
-          <article className="mx-10">
+          <article className="md:mx-[40px]">
             <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
               {item.title}
             </h1>
@@ -38,7 +38,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
             </span>
           </article>
         </div>
-        <div className="hidden md:inline-flex items-center">
+        <div className="hidden md:inline-flex justify-self-end items-center">
           <Image
             alt="down"
             src="/assets/shared/icon-comments.svg"
@@ -67,7 +67,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
             />
             <span
               className={`${
-                item.comments.length === 0 && "opacity-40"
+                item.comments.length === 0 && "opacity-40 "
               } font-bold md:text-[16px]`}
             >
               {item.comments.length}

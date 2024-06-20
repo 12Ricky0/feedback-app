@@ -34,6 +34,9 @@ const config: Config = {
           red: "#D73737",
         },
       },
+      gridTemplateColumns: {
+        two: "10fr 1fr",
+      },
     },
   },
   plugins: [],
