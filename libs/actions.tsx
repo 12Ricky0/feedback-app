@@ -89,7 +89,7 @@ const feedback = z.object({
       required_error: "Can't be empty",
     })
     .min(1, { message: "Can't be empty" }),
-  upvotes: z.number(),
+  upvotes: z.number().optional(),
   status: z.string(),
 });
 
@@ -211,4 +211,32 @@ export async function createFeedback(prevState: any, formData: FormData) {
 
   revalidatePath("/");
   redirect("/");
+}
+
+export async function updatePost(prevState: any, formData: FormData) {
+  const validatedData = feedback.safeParse({
+    title: formData.get("title"),
+    category: formData.get("cat"),
+    description: formData.get("details"),
+    status: formData.get("status"),
+  });
+
+  if (!validatedData.success) {
+    return {
+      errors: validatedData.error.flatten().fieldErrors,
+      message: "Missing Fields. Failed to Create Invoice.",
+    };
+  }
+
+  try {
+    const { title, category, description, status } = validatedData.data;
+    const updatedFeedback = {
+      title: title,
+      category: category == "UI" || "UX" ? category : category.toLowerCase(),
+      status: status,
+      description: description,
+    };
+
+    console.log(updatedFeedback);
+  } catch (error) {}
 }

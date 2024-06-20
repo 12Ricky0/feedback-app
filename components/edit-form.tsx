@@ -4,6 +4,8 @@ import { useState, useContext } from "react";
 import Back from "./back";
 import { ProductRequest } from "@/libs/definitions";
 import { ProductContext } from "@/user-provider";
+import { useFormState } from "react-dom";
+import { updatePost } from "@/libs/actions";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
@@ -76,6 +78,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
   const { category, setCategory }: any = useContext(ProductContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isStatus, setIsStatus] = useState(false);
+  const [message, formAction] = useFormState(updatePost, null);
 
   return (
     <div>
@@ -92,7 +95,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           Create New Feedback
         </h1>
 
-        <form action="" className="mx-6">
+        <form action={formAction} className="mx-6">
           <label
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray"
             htmlFor="title"
@@ -127,6 +130,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
               <input
                 type="text"
                 readOnly
+                name="cat"
                 className="focus:outline-none bg-inherit"
                 defaultValue={product.category}
                 value={category}
@@ -159,6 +163,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             >
               <input
                 type="text"
+                name="status"
                 readOnly
                 className="focus:outline-none bg-inherit"
                 defaultValue={product.status}
