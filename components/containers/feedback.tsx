@@ -21,7 +21,6 @@ export default function FeedbackContainer({
         (item: ProductRequest) =>
           item.category.toLowerCase() == sort.toLowerCase()
       ));
-  // console.log(items);
 
   function sort_data() {
     return items.sort((a: ProductRequest, b: ProductRequest) => {
