@@ -11,7 +11,9 @@ export default function ProductProvider({
 }) {
   const [sort, setSort] = useState("ALL");
   const [category, setCategory] = useState("Feature");
+  const [editCat, setEditCat] = useState();
   const [currentUser, setCurrentUser] = useState();
+  const [status, setStatus] = useState();
 
   function createUser() {}
 
@@ -31,7 +33,18 @@ export default function ProductProvider({
 
   return (
     <ProductContext.Provider
-      value={{ sort, setSort, sortBy, setSortBy, category, setCategory }}
+      value={{
+        sort,
+        setSort,
+        sortBy,
+        setSortBy,
+        category,
+        setCategory,
+        editCat,
+        setEditCat,
+        status,
+        setStatus,
+      }}
     >
       {children}
     </ProductContext.Provider>

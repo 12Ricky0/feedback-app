@@ -42,13 +42,15 @@ export default function FeedbackContainer({
       <Header count={items.length} />
       {items.length > 0 ? (
         sort_data().map((item) => (
-          <Link
-            className="last:mb-[55px]"
-            href={`/feedback/details/${item._id}`}
-            key={item.id}
-          >
+          // <Link
+          //   className="last:mb-[55px]"
+          //   href={`/feedback/details/${item._id}`}
+          //   key={item.id}
+          // >
+          <div key={item.id}>
             <ProductCard item={item} />
-          </Link>
+          </div>
+          // </Link>
         ))
       ) : (
         <Empty />

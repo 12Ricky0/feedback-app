@@ -5,11 +5,11 @@ import Back from "./back";
 import { ProductRequest } from "@/libs/definitions";
 import { ProductContext } from "@/user-provider";
 import { useFormState } from "react-dom";
-import { updatePost } from "@/libs/actions";
+import { updatePost, deletePost } from "@/libs/actions";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
-  const { category, setCategory }: any = useContext(ProductContext);
+  const { editCat, setEditCat }: any = useContext(ProductContext);
 
   return (
     <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
@@ -21,7 +21,7 @@ function SelectOption() {
           >
             <li
               className=" px-4 hover:text-primary-voilet  py-3"
-              onClick={() => setCategory(option)}
+              onClick={() => setEditCat(option)}
             >
               {option}
             </li>
@@ -29,7 +29,7 @@ function SelectOption() {
               alt="check"
               src="/assets/shared/icon-check.svg"
               className={` ${
-                category == option ? "inline-block" : "hidden"
+                editCat == option ? "inline-block" : "hidden"
               } ease-in-out duration-200`}
               width={11}
               height={8}
@@ -40,9 +40,10 @@ function SelectOption() {
     </div>
   );
 }
+
 function Status() {
   const options = ["Suggestions", "Planned", "In-Progress", "Live"];
-  const [status, setStatus] = useState("Suggestions");
+  const { status, setStatus }: any = useContext(ProductContext);
 
   return (
     <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
@@ -75,14 +76,42 @@ function Status() {
 }
 
 export default function EditForm({ product }: { product: ProductRequest }) {
-  const { category, setCategory }: any = useContext(ProductContext);
+  const { editCat, status }: any = useContext(ProductContext);
   const [isOpen, setIsOpen] = useState(false);
   const [isStatus, setIsStatus] = useState(false);
   const [message, formAction] = useFormState(updatePost, null);
 
+  function getCat(cat: string) {
+    switch (cat) {
+      case "enhancement":
+        return "Enhancement";
+      case "bug":
+        return "Bug";
+      case "feature":
+        return "Feature";
+      case "UX" || "ux":
+        return "UX";
+      case "ui" || "ui":
+        return "UI";
+    }
+  }
+  function getStatus(status: string) {
+    switch (status) {
+      case "suggestion":
+        return "Suggestion";
+      case "planned":
+        return "Planned";
+      case "in-progress":
+        return "In-Progress";
+      case "live":
+        return "Live";
+    }
+  }
   return (
     <div>
-      <Back />
+      <div className="mx-6 md:mx-0">
+        <Back />
+      </div>
       <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px] md:mt-10 relative">
         <Image
           alt="check"
@@ -92,7 +121,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           className="absolute md:size-14 md:-translate-y-7 -translate-y-5 mx-6"
         />
         <h1 className="text-[18px] md:text-[24px] mx-6 font-bold text-secondary-dark-gray mb-6 pt-11">
-          Create New Feedback
+          Editing ´{product.title}´
         </h1>
 
         <form action={formAction} className="mx-6">
@@ -105,6 +134,8 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
             Add a short, descriptive headline
           </span>
+          <input type="hidden" name="post_id" value={product._id} />
+
           <input
             type="text"
             name="title"
@@ -132,8 +163,8 @@ export default function EditForm({ product }: { product: ProductRequest }) {
                 readOnly
                 name="cat"
                 className="focus:outline-none bg-inherit"
-                defaultValue={product.category}
-                value={category}
+                // defaultValue={product.category}
+                value={editCat ? editCat : getCat(product.category)}
               />
               <Image
                 alt="down"
@@ -166,8 +197,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
                 name="status"
                 readOnly
                 className="focus:outline-none bg-inherit"
-                defaultValue={product.status}
-                // value={category}
+                value={status ? status : getStatus(product.status)}
               />
               <Image
                 alt="down"
@@ -207,13 +237,16 @@ export default function EditForm({ product }: { product: ProductRequest }) {
                 className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
                 type="submit"
               >
-                Add Feedback
+                Save Changes
               </button>
               <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
                 Cancel
               </button>
             </div>
-            <button className="border-none rounded-lg md:w-[93px] w-full bg-tetiary-red mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+            <button
+              onClick={() => deletePost(product._id)}
+              className="border-none rounded-lg md:w-[93px] w-full bg-tetiary-red mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]"
+            >
               Delete
             </button>
           </div>

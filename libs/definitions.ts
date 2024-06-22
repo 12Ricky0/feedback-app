@@ -17,6 +17,7 @@ export interface Comment {
   content: string;
   user: User;
   replies?: Replies[];
+  _id: string;
 }
 
 export interface ProductRequest {

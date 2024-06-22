@@ -59,6 +59,7 @@ const comment = z.object({
     .string({
       required_error: "Content is Required",
     })
+    .min(1, { message: "Content cannot be empty" })
     .max(255, { message: "Exceeded maximum allowed Characters limit" }),
   image: z.string(),
   name: z.string(),
@@ -70,6 +71,7 @@ const userReply = z.object({
     .string({
       required_error: "Content is Required",
     })
+    .min(1, { message: "Content cannot be empty" })
     .max(250, { message: "Exceeded maximum allowed Characters limit" }),
   replyTo: z.string(),
   image: z.string(),
@@ -121,7 +123,6 @@ export async function getReplies(prevState: any, formData: FormData) {
         username: userName,
       },
     };
-    await dbConnect();
     let post = await UserProduct.findById(id);
     if (post) {
       const comment = await post.comments.find(
@@ -214,6 +215,8 @@ export async function createFeedback(prevState: any, formData: FormData) {
 }
 
 export async function updatePost(prevState: any, formData: FormData) {
+  const id = formData.get("post_id");
+
   const validatedData = feedback.safeParse({
     title: formData.get("title"),
     category: formData.get("cat"),
@@ -233,10 +236,35 @@ export async function updatePost(prevState: any, formData: FormData) {
     const updatedFeedback = {
       title: title,
       category: category == "UI" || "UX" ? category : category.toLowerCase(),
-      status: status,
+      status: status.toLowerCase(),
       description: description,
     };
-
-    console.log(updatedFeedback);
+    await UserProduct.findByIdAndUpdate({ _id: id }, updatedFeedback, {});
   } catch (error) {}
+  revalidatePath("/");
+  redirect("/");
+}
+
+export async function deletePost(id: string) {
+  try {
+    await UserProduct.findByIdAndDelete(id);
+  } catch (error) {}
+  revalidatePath("/");
+  redirect("/");
+}
+
+export async function updateVote(id: string) {
+  let post = await UserProduct.findById(id);
+  await UserProduct.findByIdAndUpdate(
+    { _id: id },
+    { $inc: { upvotes: +1 } }, // Increment the upvotes by 1
+    { new: true }
+  );
+  //  post.save();
+  // if (post) {
+  //   console.log(post.upvotes);
+  //   await post.upvotes + 1;
+  //   post.save();
+  // }
+  revalidatePath("/");
 }

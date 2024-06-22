@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ReplyForm } from "./forms";
+import { string } from "zod";
 
 export default function ReplyCard({
   name,
@@ -19,7 +20,7 @@ export default function ReplyCard({
   userName: string;
   content: string;
   src: string;
-  id: number;
+  id: string;
   _id: string;
   commentId?: string;
   replyto?: string;
@@ -63,10 +64,10 @@ export default function ReplyCard({
       <div className={`${className} md:pl-[60p]`}>
         <p className="text-[13px] md:ml-[56px] md:text-[15px] text-secondary-light-blue ">
           <span className="text-primary-voilet font-bold">{replyto} </span>
-          {content}{" "}
+          {content}
         </p>
 
-        {activeForm == id && (
+        {String(activeForm) == id && (
           <div className="md:ml-[56px]">
             <ReplyForm
               userName={userName}

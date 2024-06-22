@@ -6,12 +6,12 @@ import { ProductRequest } from "@/libs/definitions";
 export default function ProductCard({ item }: { item: ProductRequest }) {
   function get_status(status: string) {
     switch (status) {
-      case "enhancement":
+      case "enhancement" || "Enhancement":
         return "Enhancement";
 
-      case "bug":
+      case "bug" || "Bug":
         return "Bug";
-      case "feature":
+      case "feature" || "Feature":
         return "Feature";
       case "UX" || "ux":
         return "UX";
@@ -24,19 +24,25 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
       <article className="py-[28px] mx-8 md:grid grid-cols-two justify-center items-center">
         <div className="md:inline-flex ">
           <div className="hidden md:inline-flex">
-            <Upvotes vote={item.upvotes} />
+            <Upvotes id={item._id} vote={item.upvotes} />
           </div>
-          <article className="md:mx-[40px]">
-            <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
-              {item.title}
-            </h1>
-            <p className="mt-2 mb-[12px]  text-secondary-light-blue md:text-[16px]">
-              {item.description}
-            </p>
-            <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
-              {get_status(item.category)}
-            </span>
-          </article>
+          <Link
+            // className="last:mb-[55px]"
+            href={`/feedback/details/${item._id}`}
+            key={item.id}
+          >
+            <article className="md:mx-[40px]">
+              <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
+                {item.title}
+              </h1>
+              <p className="mt-2 mb-[12px]  text-secondary-light-blue md:text-[16px]">
+                {item.description}
+              </p>
+              <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
+                {get_status(item.category)}
+              </span>
+            </article>
+          </Link>
         </div>
         <div className="hidden md:inline-flex justify-self-end items-center">
           <Image
@@ -56,7 +62,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
         </div>
         {/* mobile view */}
         <div className="flex justify-between mt-4 items-center md:hidden">
-          <Upvotes vote={item.upvotes} />
+          <Upvotes id={item._id} vote={item.upvotes} />
           <div className="flex items-center">
             <Image
               alt="down"

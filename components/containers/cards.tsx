@@ -19,7 +19,7 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
       {item.comments?.map((data) => (
         <div key={data.id} className="">
           <ReplyCard
-            id={data.id}
+            id={data._id?.toString()!}
             _id={item._id}
             commentId={data.user._id?.toString()}
             src={data.user.image.split(".")[1] + ".jpg"}
@@ -36,7 +36,7 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
                 data.replies.map((reply) => (
                   <div className="" key={data.id}>
                     <ReplyCard
-                      id={data.id}
+                      id={data._id?.toString()!}
                       _id={item._id}
                       commentId={data.user._id?.toString()}
                       src={reply.user.image.split(".")[1] + ".jpg"}
