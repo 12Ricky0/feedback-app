@@ -3,6 +3,7 @@ import { z } from "zod";
 import { Comment } from "./definitions";
 
 import UserProduct from "@/models/productRequest";
+import CurrentUser from "@/models/user";
 import { dbConnect } from "./dbConnect";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -33,17 +34,12 @@ export async function getRoadMap() {
   }
 }
 
-export async function getCurrentUser() {
-  // try {
-  //   await dbConnect();
-  //   let res = await UserProduct.find({
-  //     status: { $in: ["live", "planned", "in-progress"] },
-  //   });
-  //   return Response.json(res);
-  // } catch (error) {
-  //   console.error(error);
-  //   throw new Error(notFound());
-  // }
+export async function getCurrentUser(query: string) {
+  try {
+    await dbConnect();
+    let res = await CurrentUser.findOne({ username: query });
+    return Response.json(res);
+  } catch (error) {}
 }
 
 export async function getProduct(query: string) {

@@ -1,19 +1,21 @@
 "use client";
 
 import { ProductContext } from "@/user-provider";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Header } from "../header";
 import Empty from "../empty";
 import { ProductRequest } from "@/libs/definitions";
 import Link from "next/link";
 import ProductCard from "./product-card";
+import dynamic from "next/dynamic";
+import { getCurrentUser } from "@/libs/actions";
 
 export default function FeedbackContainer({
   data,
 }: {
   data: ProductRequest[];
 }) {
-  const { sort, sortBy }: any = useContext(ProductContext);
+  const { sort, sortBy, currentUser }: any = useContext(ProductContext);
   let items: ProductRequest[];
   sort == "ALL"
     ? (items = data)
@@ -21,6 +23,8 @@ export default function FeedbackContainer({
         (item: ProductRequest) =>
           item.category.toLowerCase() == sort.toLowerCase()
       ));
+
+  // console.log(currentUser);
 
   function sort_data() {
     return items.sort((a: ProductRequest, b: ProductRequest) => {
