@@ -26,11 +26,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
           <div className="hidden md:inline-flex">
             <Upvotes id={item._id} vote={item.upvotes} />
           </div>
-          <Link
-            // className="last:mb-[55px]"
-            href={`/feedback/details/${item._id}`}
-            key={item.id}
-          >
+          <Link href={`/feedback/details/${item._id}`} key={item.id}>
             <article className="md:mx-[40px]">
               <h1 className="text-secondary-dark-gray group-hover:text-primary-light-blue md:text-[18px] font-bold">
                 {item.title}

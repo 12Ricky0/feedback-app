@@ -16,9 +16,9 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
   return (
     <section className="">
       <header className="bg-primary-dark-blue py-[26px] md:rounded-lg flex justify-between items-center">
-        <div className="ml-6">
+        <div className="md:ml-6">
           <Back className="text-white mx-0 mt-0 " />
-          <h1 className="font-bold text-[18px] md:text-[24px] text-white">
+          <h1 className="font-bold ml-6 md:ml-0 text-[18px] md:text-[24px] text-white">
             Roadmap
           </h1>
         </div>

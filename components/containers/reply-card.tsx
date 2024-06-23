@@ -61,7 +61,7 @@ export default function ReplyCard({
           Reply
         </button>
       </div>
-      <div className={`${className} md:pl-[60p]`}>
+      <div className={`${className}`}>
         <p className="text-[13px] md:ml-[56px] md:text-[15px] text-secondary-light-blue ">
           <span className="text-primary-voilet font-bold">{replyto} </span>
           {content}

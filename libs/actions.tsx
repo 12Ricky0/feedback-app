@@ -206,8 +206,6 @@ export async function createFeedback(prevState: any, formData: FormData) {
     };
     await dbConnect();
     await UserProduct.create(feedback);
-
-    console.log(feedback);
   } catch (error) {}
 
   revalidatePath("/");

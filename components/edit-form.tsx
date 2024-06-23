@@ -142,7 +142,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             id="title"
             autoComplete="on"
             defaultValue={product.title}
-            className="w-full pl-4 text-secondary-light-blue text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
+            className="w-full pl-4 text-secondary-dark-gray text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
           <label
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
@@ -156,7 +156,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           <div>
             <div
               onClick={() => setIsOpen(!isOpen)}
-              className="w-full px-4 text-secondary-light-blue md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
+              className="w-full px-4 text-secondary-dark-gray md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
             >
               <input
                 type="text"
@@ -190,7 +190,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           <div>
             <div
               onClick={() => setIsStatus(!isStatus)}
-              className="w-full px-4 text-secondary-light-blue md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
+              className="w-full px-4 text-secondary-dark-gray md:text-[14px] text-[13px] h-12 bg-secondary-very-gray rounded-lg mt-4 flex items-center justify-between"
             >
               <input
                 type="text"
@@ -229,7 +229,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             rows={5}
             autoComplete="on"
             defaultValue={product.description}
-            className="w-full pl-4 text-secondary-light-blue text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
+            className="w-full pl-4 text-secondary-dark-gray text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
           <div className="mt-10 pb-6 md:flex flex-row-reverse justify-between gap-4">
             <div className=" md:flex flex-row-reverse gap-4">

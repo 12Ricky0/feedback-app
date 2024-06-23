@@ -17,7 +17,7 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
         {total} Comments
       </h1>
       {item.comments?.map((data) => (
-        <div key={data.id} className="">
+        <div key={data.id}>
           <ReplyCard
             id={data._id?.toString()!}
             _id={item._id}

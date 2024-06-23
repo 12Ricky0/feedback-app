@@ -10,7 +10,9 @@ export default function Back({ className }: { className?: string }) {
     <div
       onClick={router.back}
       className={`${className}mx-6 md:mx-0  ${
-        path.includes("details") ? "mt-0" : "mt-[35px]"
+        path.includes("details") || path.includes("roadmap")
+          ? "mt-0"
+          : "mt-[35px]"
       } md:mt-0 cursor-pointer`}
     >
       <Image

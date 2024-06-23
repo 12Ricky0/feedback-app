@@ -16,13 +16,6 @@ export default async function Page({ params }: { params: { id: string } }) {
         <div className="flex mx-6 md:mx-0 mt-6 md:mt-0 justify-between items-center">
           <Back className="mt-0" />
           <button className="bg-primary-light-blue text-[13px] font-bold text-white h-10 rounded-lg w-[134px]">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-plus.svg"
-              className="inline-block mr-2"
-              width={8}
-              height={8}
-            />
             <Link href={`/feedback/edit/${params.id}`}>Edit Feedback</Link>
           </button>
         </div>
