@@ -12,7 +12,7 @@ export default function ProductProvider({
   const [sort, setSort] = useState("ALL");
   const [category, setCategory] = useState("Feature");
   const [editCat, setEditCat] = useState();
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState();
   const [status, setStatus] = useState();
 
   function generateLetter() {
@@ -28,6 +28,19 @@ export default function ProductProvider({
     return String(Math.floor(Math.random() * (max - min + 1)) + min);
   };
 
+  const fetchCurrentUser = (username: string) => {
+    return fetch(`http://localhost:3000/api/user/?query=${username}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("success");
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        return null;
+      });
+  };
+
   useEffect(() => {
     const user = localStorage.getItem("user");
 
@@ -36,14 +49,58 @@ export default function ProductProvider({
       name: generateLetter(),
       username: generateLetter() + generateRandomNumber(0, 100),
     };
-    if (user) {
-      setCurrentUser(JSON.parse(user!));
-      // console.log(JSON.parse(user).username);
-    } else {
-      localStorage.setItem("user", JSON.stringify(newUser));
-      setCurrentUser(JSON.parse(user!));
+    try {
+      if (user) {
+        setCurrentUser(JSON.parse(user!));
+        // console.log(JSON.parse(user).username);
+        fetchCurrentUser(JSON.parse(user!).username).then((res) => {
+          if (res) {
+            // console.log("Fetched user:", res);
+            setCurrentUser(res.res);
+          }
+        });
+      } else {
+        localStorage.setItem("user", JSON.stringify(newUser));
+        // setCurrentUser(JSON.parse(user!));
+
+        fetch("http://localhost:3000/api/user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        });
+        // .then((response) => response.json())
+        // .then((data) => {
+        //   // console.log("User data fetched successfully:", data);
+        //   return data;
+        // });
+      }
+    } catch (error) {
+    } finally {
+      if (!user) {
+        const query = localStorage.getItem("user");
+        fetch(
+          `http://localhost:3000/api/user/?query=${JSON.parse(query!).username}`
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log("User data fetched successfully:", data);
+            setCurrentUser(data.res);
+          })
+          .catch((error) => {
+            console.error("Error fetching user data:", error);
+            return null;
+          });
+      }
     }
   }, []);
+
+  useEffect(() => {
+    if (currentUser) {
+      console.log("Current user state updated:", currentUser);
+    }
+  }, [currentUser]);
 
   const [sortBy, setSortBy] = useState<string>("Most Upvotes");
 
