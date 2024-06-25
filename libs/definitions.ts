@@ -1,3 +1,4 @@
+// import { CurrentUser } from '@/models/user';
 import mongoose, { Document, Model } from "mongoose";
 
 export interface User extends Document {
@@ -21,6 +22,7 @@ export interface Comment {
 }
 
 export interface ProductRequest {
+  // currentUser: User;
   _id: string;
   id: number;
   title: string;

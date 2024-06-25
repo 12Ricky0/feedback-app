@@ -36,10 +36,12 @@ export async function getRoadMap() {
 
 export async function getCurrentUser(query: string) {
   try {
-    await dbConnect();
-    let res = await CurrentUser.findOne({ username: query });
+    // await dbConnect();
+    let res = await CurrentUser.findOne({ username: String(query) });
     return Response.json(res);
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function getProduct(query: string) {
