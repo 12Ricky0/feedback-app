@@ -36,7 +36,6 @@ export async function getRoadMap() {
 
 export async function getCurrentUser(query: string) {
   try {
-    // await dbConnect();
     let res = await CurrentUser.findOne({ username: String(query) });
     return Response.json(res);
   } catch (error) {
