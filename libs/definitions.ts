@@ -22,6 +22,7 @@ export interface Comment {
 }
 
 export interface ProductRequest {
+  userId: string;
   currentUser: User;
   _id: string;
   id: number;

@@ -9,11 +9,14 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { unstable_noStore as noStore } from "next/cache";
 
-export async function getSuggestions() {
+export async function getSuggestions(id: string) {
   noStore();
   try {
     await dbConnect();
-    let res = await UserProduct.find({ status: "suggestion" });
+    let res = await UserProduct.find({
+      status: "suggestion",
+      "currentUser.username": id,
+    });
     return Response.json(res);
   } catch (error) {
     console.error(error);
@@ -21,11 +24,24 @@ export async function getSuggestions() {
   }
 }
 
-export async function getRoadMap() {
+export async function verifyDefaultUserPost(query: string) {
+  // noStore();
+  try {
+    await dbConnect();
+    let res = await UserProduct.find({ "currentUser.username": query });
+    return Response.json(res);
+  } catch (error) {
+    console.error(error);
+    // throw new Error(notFound());
+  }
+}
+
+export async function getRoadMap(query: string) {
   try {
     await dbConnect();
     let res = await UserProduct.find({
       status: { $in: ["live", "planned", "in-progress"] },
+      "currentUser.username": query,
     });
     return Response.json(res);
   } catch (error) {

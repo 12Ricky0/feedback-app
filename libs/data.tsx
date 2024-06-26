@@ -16,25 +16,26 @@ async function name() {
   const currentUser = await user?.json();
   return currentUser;
 }
-
-// Generate a default invoice for the first product request in the data.json file.
 export default async function defaultInvoice() {
-  const d = data.productRequests[0];
+  //   const d = data.productRequests[0];
+  const uName = cookieStore.get("username");
+  const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
+  const currentUser = await user?.json();
+  data.productRequests.map((d) => {
+    const udata = {
+      currentUser: {
+        image: currentUser?.image,
+        name: currentUser?.name,
+        username: currentUser?.username,
+      },
+      id: d.id,
+      title: d.title,
+      category: d.category,
+      upvotes: d.upvotes,
+      status: d.status,
+      description: d.description,
+      comments: d.comments,
+    };
+    UserProduct.create(udata);
+  });
 }
-data.productRequests.map((d) => {
-  const udata = {
-    // currentUser: {
-    //   image: name().image,
-    //   name: name().name,
-    //   username: name().username,
-    // },
-    id: d.id,
-    title: d.title,
-    category: d.category,
-    upvotes: d.upvotes,
-    status: d.status,
-    description: d.description,
-    comments: d.comments,
-  };
-  //   console.log(udata);
-});

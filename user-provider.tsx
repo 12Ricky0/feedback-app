@@ -97,9 +97,9 @@ export default function ProductProvider({
   }, []);
 
   useEffect(() => {
-    if (currentUser) {
-      console.log("Current user state updated:", currentUser);
-    }
+    // if (currentUser) {
+    //   console.log("Current user state updated:", currentUser);
+    // }
   }, [currentUser]);
 
   const [sortBy, setSortBy] = useState<string>("Most Upvotes");

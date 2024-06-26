@@ -16,6 +16,7 @@ const commentSchema = new mongoose.Schema({
 });
 
 const productSchema = new mongoose.Schema<ProductRequest>({
+  userId: String,
   currentUser: userSchema,
   id: Number,
   title: String,
