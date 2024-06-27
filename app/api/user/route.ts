@@ -5,10 +5,16 @@ import UserProduct from "@/models/productRequest";
 import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
-  const res = await request.json();
+  const req = await request.json();
   //   console.log("Data Received:", res);
   await dbConnect();
-  await CurrentUser.create(res);
+  // console.log(req);
+  cookies().set({
+    name: "username",
+    value: JSON.stringify(req.username),
+  });
+
+  await CurrentUser.create(req);
   return Response.json(
     { message: "Data Inserted Sucessfully" },
     { status: 200 }

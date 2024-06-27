@@ -18,10 +18,12 @@ export default async function Home() {
 
   let defaultUserPost = await verifyDefaultUserPost(currentUser?.username);
   const result = await defaultUserPost?.json();
-  console.log(currentUser);
-  if (currentUser && result.length == 0) {
-    await defaultInvoice();
-  }
+  // console.log(currentUser);
+  // if (currentUser && result.length == 0) {
+  //   await defaultInvoice();
+  // }
+  // await defaultInvoice();
+
   // console.log(result);
   let data = await getSuggestions(currentUser?.username);
   let suggestion = await data?.json();

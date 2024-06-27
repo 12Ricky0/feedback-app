@@ -3,6 +3,7 @@
 import { createContext, useState, useEffect } from "react";
 import { getCurrentUser } from "@/libs/actions";
 export const ProductContext = createContext({});
+import defaultInvoice from "./libs/data";
 
 export default function ProductProvider({
   children,
@@ -30,6 +31,18 @@ export default function ProductProvider({
 
   const fetchCurrentUser = (username: string) => {
     return fetch(`http://localhost:3000/api/user/?query=${username}`)
+      .then((response) => response.json())
+      .then((data) => {
+        // console.log("success");
+        return data;
+      })
+      .catch((error) => {
+        console.error("Error fetching user data:", error);
+        return null;
+      });
+  };
+  const fetchDefaultInvoice = (username: string) => {
+    return fetch(`http://localhost:3000/api/?query=${username}`)
       .then((response) => response.json())
       .then((data) => {
         // console.log("success");
@@ -97,9 +110,21 @@ export default function ProductProvider({
   }, []);
 
   useEffect(() => {
-    // if (currentUser) {
-    //   console.log("Current user state updated:", currentUser);
-    // }
+    if (currentUser) {
+      // defaultInvoice(currentUser!);
+      fetch(`http://localhost:3000/api/?query=${currentUser.username}`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("success", data);
+          if (data.length == 0) {
+            defaultInvoice(currentUser);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          return null;
+        });
+    }
   }, [currentUser]);
 
   const [sortBy, setSortBy] = useState<string>("Most Upvotes");

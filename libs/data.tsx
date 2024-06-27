@@ -16,17 +16,20 @@ async function name() {
   const currentUser = await user?.json();
   return currentUser;
 }
-export default async function defaultInvoice() {
+export default async function defaultInvoice(userData: User) {
   //   const d = data.productRequests[0];
   const uName = cookieStore.get("username");
+  //   console.log("User name:", data);
   const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
   const currentUser = await user?.json();
+  //   console.log("This is the current: ", currentUser);
+  console.log("User data:", userData);
   data.productRequests.map((d) => {
     const udata = {
       currentUser: {
-        image: currentUser?.image,
-        name: currentUser?.name,
-        username: currentUser?.username,
+        image: userData?.image,
+        name: userData?.name,
+        username: userData?.username,
       },
       id: d.id,
       title: d.title,

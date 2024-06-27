@@ -13,3 +13,14 @@ export async function POST(request: Request) {
     { status: 200 }
   );
 }
+
+export async function GET(request: Request) {
+  // noStore();
+  const { searchParams } = new URL(request.url);
+  const query = searchParams.get("query");
+  await dbConnect();
+  let res = await UserProduct.find({ "currentUser.username": query });
+  // console.log("Query Received:", res);
+
+  return Response.json({ res }, { status: 200 });
+}
