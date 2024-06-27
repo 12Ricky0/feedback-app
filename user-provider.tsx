@@ -45,7 +45,6 @@ export default function ProductProvider({
     return fetch(`http://localhost:3000/api/?query=${username}`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log("success");
         return data;
       })
       .catch((error) => {
