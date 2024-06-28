@@ -22,6 +22,8 @@ export async function getSuggestions(id: string) {
     console.error(error);
     // throw new Error(notFound());
   }
+  revalidatePath("/");
+  // redirect("/");
 }
 
 export async function verifyDefaultUserPost(query: string) {
@@ -48,6 +50,8 @@ export async function getRoadMap(query: string) {
     console.error(error);
     // throw new Error(notFound());
   }
+  revalidatePath("/");
+  // redirect("/");
 }
 
 export async function getCurrentUser(query: string) {

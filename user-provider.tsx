@@ -4,6 +4,7 @@ import { createContext, useState, useEffect } from "react";
 import { getCurrentUser } from "@/libs/actions";
 export const ProductContext = createContext({});
 import defaultInvoice from "./libs/data";
+import { User } from "./libs/definitions";
 
 export default function ProductProvider({
   children,
@@ -13,7 +14,7 @@ export default function ProductProvider({
   const [sort, setSort] = useState("ALL");
   const [category, setCategory] = useState("Feature");
   const [editCat, setEditCat] = useState();
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser]: any = useState();
   const [status, setStatus] = useState();
 
   function generateLetter() {
@@ -63,7 +64,7 @@ export default function ProductProvider({
     };
     try {
       if (user) {
-        setCurrentUser(JSON.parse(user!));
+        // setCurrentUser(JSON.parse(user!));
         // console.log(JSON.parse(user).username);
         fetchCurrentUser(JSON.parse(user!).username).then((res) => {
           if (res) {
@@ -111,12 +112,14 @@ export default function ProductProvider({
   useEffect(() => {
     if (currentUser) {
       // defaultInvoice(currentUser!);
-      fetch(`http://localhost:3000/api/?query=${currentUser.username}`)
+      const data = fetch(
+        `http://localhost:3000/api/?query=${currentUser.username}`
+      )
         .then((response) => response.json())
         .then((data) => {
-          console.log("success", data);
-          if (data.length == 0) {
+          if (data.res.length == 0) {
             defaultInvoice(currentUser);
+            // console.log("success", data);
           }
         })
         .catch((error) => {
