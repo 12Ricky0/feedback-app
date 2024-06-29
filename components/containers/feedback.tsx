@@ -25,7 +25,6 @@ export default function FeedbackContainer({
       ));
 
   // console.log(currentUser);
-
   function sort_data() {
     return items.sort((a: ProductRequest, b: ProductRequest) => {
       switch (sortBy) {

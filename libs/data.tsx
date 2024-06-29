@@ -10,12 +10,6 @@ import { User } from "./definitions";
 
 const cookieStore = cookies();
 
-async function name() {
-  const uName = cookieStore.get("username");
-  const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
-  const currentUser = await user?.json();
-  return currentUser;
-}
 export default async function defaultInvoice(userData: User) {
   //   const d = data.productRequests[0];
   const uName = cookieStore.get("username");
@@ -23,7 +17,6 @@ export default async function defaultInvoice(userData: User) {
   const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
   const currentUser = await user?.json();
   //   console.log("This is the current: ", currentUser);
-  console.log("User data:", userData);
   data.productRequests.map((d) => {
     const udata = {
       currentUser: {

@@ -23,7 +23,7 @@ export async function getSuggestions(id: string) {
     // throw new Error(notFound());
   }
   revalidatePath("/");
-  // redirect("/");
+  redirect("/");
 }
 
 export async function verifyDefaultUserPost(query: string) {
@@ -51,7 +51,7 @@ export async function getRoadMap(query: string) {
     // throw new Error(notFound());
   }
   revalidatePath("/");
-  // redirect("/");
+  redirect("/");
 }
 
 export async function getCurrentUser(query: string) {
