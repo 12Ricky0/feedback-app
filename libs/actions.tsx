@@ -22,8 +22,7 @@ export async function getSuggestions(id: string) {
     console.error(error);
     // throw new Error(notFound());
   }
-  revalidatePath("/");
-  redirect("/default");
+  revalidatePath("/home");
 }
 
 export async function verifyDefaultUserPost(query: string) {
@@ -50,8 +49,7 @@ export async function getRoadMap(query: string) {
     console.error(error);
     // throw new Error(notFound());
   }
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/home");
 }
 
 export async function getCurrentUser(query: string) {
@@ -225,8 +223,8 @@ export async function createFeedback(prevState: any, formData: FormData) {
     await UserProduct.create(feedback);
   } catch (error) {}
 
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/home");
+  redirect("/home");
 }
 
 export async function updatePost(prevState: any, formData: FormData) {
@@ -256,16 +254,16 @@ export async function updatePost(prevState: any, formData: FormData) {
     };
     await UserProduct.findByIdAndUpdate({ _id: id }, updatedFeedback, {});
   } catch (error) {}
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/home");
+  redirect("/home");
 }
 
 export async function deletePost(id: string) {
   try {
     await UserProduct.findByIdAndDelete(id);
   } catch (error) {}
-  revalidatePath("/");
-  redirect("/");
+  revalidatePath("/home");
+  redirect("/home");
 }
 
 export async function updateVote(id: string) {
@@ -281,5 +279,5 @@ export async function updateVote(id: string) {
   //   await post.upvotes + 1;
   //   post.save();
   // }
-  revalidatePath("/");
+  revalidatePath("/home");
 }
