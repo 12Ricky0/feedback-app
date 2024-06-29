@@ -23,7 +23,7 @@ export async function getSuggestions(id: string) {
     // throw new Error(notFound());
   }
   revalidatePath("/");
-  redirect("/");
+  redirect("/default");
 }
 
 export async function verifyDefaultUserPost(query: string) {

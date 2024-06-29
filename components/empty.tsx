@@ -1,7 +1,10 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Empty() {
+  const router = useRouter();
   return (
     <section className="flex items-center flex-col justify-center py-[110px] mb-[55px] text-center bg-white mx-6 md:mx-0 mt-4 rounded-lg">
       <Image
@@ -29,6 +32,12 @@ export default function Empty() {
           height={8}
         />
         <Link href="/feedback/add">Add Feedback</Link>
+      </button>
+      <button
+        onClick={() => router.push("/")}
+        className="bg-primary-voilet text-[13px] font-bold text-white h-10 mt-12 rounded-lg w-[134px]"
+      >
+        Reload
       </button>
     </section>
   );

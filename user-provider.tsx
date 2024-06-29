@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/libs/actions";
 export const ProductContext = createContext({});
 import defaultInvoice from "./libs/data";
 import { User } from "./libs/definitions";
+import { useRouter } from "next/navigation";
 
 export default function ProductProvider({
   children,
@@ -42,18 +43,6 @@ export default function ProductProvider({
         return null;
       });
   };
-  // const fetchDefaultInvoice = (username: string) => {
-  //   return fetch(`http://localhost:3000/api/?query=${username}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       return data;
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching user data:", error);
-  //       return null;
-  //     });
-  // };
-
   useEffect(() => {
     const user = localStorage.getItem("user");
 
@@ -63,18 +52,8 @@ export default function ProductProvider({
       username: generateLetter() + generateRandomNumber(0, 100),
     };
     try {
-      if (user) {
-        // setCurrentUser(JSON.parse(user!));
-        // console.log(JSON.parse(user).username);
-        fetchCurrentUser(JSON.parse(user!).username).then((res) => {
-          if (res) {
-            // console.log("Fetched user:", res);
-            setCurrentUser(res.res);
-          }
-        });
-      } else {
+      if (!user) {
         localStorage.setItem("user", JSON.stringify(newUser));
-        // setCurrentUser(JSON.parse(user!));
 
         fetch("http://localhost:3000/api/user", {
           method: "POST",
@@ -83,11 +62,12 @@ export default function ProductProvider({
           },
           body: JSON.stringify(newUser),
         });
-        // .then((response) => response.json())
-        // .then((data) => {
-        //   // console.log("User data fetched successfully:", data);
-        //   return data;
-        // });
+      } else {
+        fetchCurrentUser(JSON.parse(user!).username).then((res) => {
+          if (res) {
+            setCurrentUser(res.res);
+          }
+        });
       }
     } catch (error) {
     } finally {
@@ -98,7 +78,6 @@ export default function ProductProvider({
         )
           .then((response) => response.json())
           .then((data) => {
-            // console.log("User data fetched successfully:", data);
             setCurrentUser(data.res);
           })
           .catch((error) => {

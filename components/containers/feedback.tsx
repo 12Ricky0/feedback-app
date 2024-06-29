@@ -9,6 +9,7 @@ import Link from "next/link";
 import ProductCard from "./product-card";
 import dynamic from "next/dynamic";
 import { getCurrentUser } from "@/libs/actions";
+import { useRouter } from "next/navigation";
 
 export default function FeedbackContainer({
   data,
@@ -24,7 +25,6 @@ export default function FeedbackContainer({
           item.category.toLowerCase() == sort.toLowerCase()
       ));
 
-  // console.log(currentUser);
   function sort_data() {
     return items.sort((a: ProductRequest, b: ProductRequest) => {
       switch (sortBy) {
