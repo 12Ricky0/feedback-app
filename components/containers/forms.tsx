@@ -3,7 +3,7 @@ import { useState } from "react";
 import { getReplies, postComment } from "@/libs/actions";
 import { useFormState } from "react-dom";
 
-export function CommentForm({ _id }: { _id: string }) {
+export function CommentForm({ _id, user }: { _id: string; user: string }) {
   const [count, setCount] = useState(250);
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -25,6 +25,7 @@ export function CommentForm({ _id }: { _id: string }) {
 
       <div className="mx-6 mb-[16px]">
         <input type="hidden" name="post_id" value={_id} />
+        <input type="hidden" name="user" value={user} />
 
         <textarea
           onChange={handleChange}
@@ -56,9 +57,11 @@ export function ReplyForm({
   _id,
   onSubmit,
   commentId,
+  user,
 }: {
   userName: string;
   _id: string;
+  user: string;
   commentId: string;
   onSubmit: any;
 }) {
@@ -68,6 +71,7 @@ export function ReplyForm({
       <input type="hidden" name="post-id" value={_id} />
       <input type="hidden" name="username" value={userName} />
       <input type="hidden" name="comment_id" value={commentId} />
+      <input type="hidden" name="user" value={user} />
       <textarea
         name="reply"
         maxLength={250}

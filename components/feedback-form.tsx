@@ -43,7 +43,7 @@ function SelectOption() {
 
 export default function FeedbackForm() {
   const [isOpen, setIsOpen] = useState(false);
-  const { category }: any = useContext(ProductContext);
+  const { category, currentUser }: any = useContext(ProductContext);
 
   const [message, formAction] = useFormState(createFeedback, null);
 
@@ -82,6 +82,7 @@ export default function FeedbackForm() {
               message?.errors.title && "outline-tetiary-red outline-1 outline"
             } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
+          <input hidden value={currentUser.username} name="user" id="title" />
           {message?.errors.title && (
             <div className="">
               <p className="text-[13px] md:text-[14px] text-tetiary-red">

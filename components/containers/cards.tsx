@@ -19,6 +19,7 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
       {item.comments?.map((data) => (
         <div key={data.id}>
           <ReplyCard
+            user={item.currentUser.username}
             id={data._id?.toString()!}
             _id={item._id}
             commentId={data.user._id?.toString()}
@@ -36,6 +37,7 @@ export default function CommentCard({ item }: { item: ProductRequest }) {
                 data.replies.map((reply) => (
                   <div className="" key={data.id}>
                     <ReplyCard
+                      user={item.currentUser.username}
                       id={data._id?.toString()!}
                       _id={item._id}
                       commentId={data.user._id?.toString()}

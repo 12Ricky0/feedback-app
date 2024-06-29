@@ -26,7 +26,6 @@ export async function getSuggestions(id: string) {
 }
 
 export async function verifyDefaultUserPost(query: string) {
-  // noStore();
   try {
     await dbConnect();
     let res = await UserProduct.find({ "currentUser.username": query });
@@ -111,12 +110,15 @@ const feedback = z.object({
 });
 
 export async function getReplies(prevState: any, formData: FormData) {
+  const user = formData.get("user");
+  const currentUser = await getCurrentUser(user?.toString()!);
+  const res = await currentUser?.json();
   const validatedData = userReply.safeParse({
     content: formData.get("reply"),
     replyTo: formData.get("username")?.slice(1),
-    image: "./assets/user-images/image-zena.jpg",
-    name: "Zena Kelley",
-    userName: "velvetround",
+    image: res.image,
+    name: res.name,
+    userName: res.username,
   });
   const id = formData.get("post-id");
   const commentId = formData.get("comment_id");
@@ -156,15 +158,21 @@ export async function getReplies(prevState: any, formData: FormData) {
 }
 
 export async function postComment(prevState: any, formData: FormData) {
+  noStore();
+
+  const user = formData.get("user");
+  const currentUser = await getCurrentUser(user?.toString()!);
+  const res = await currentUser?.json();
+
   const validatedData = comment.safeParse({
     content: formData.get("comment"),
-    image: "./assets/user-images/image-zena.jpg",
-    name: "Zena Kelley",
-    userName: "velvetround",
+    image: res.image,
+    name: res.name,
+    userName: res.username,
   });
 
   const id = formData.get("post_id");
-  // console.log(validatedData.error);
+
   if (!validatedData.success) {
     return {
       errors: validatedData.error.flatten().fieldErrors,
@@ -194,6 +202,10 @@ export async function postComment(prevState: any, formData: FormData) {
 }
 
 export async function createFeedback(prevState: any, formData: FormData) {
+  const user = formData.get("user");
+
+  const currentUser = await getCurrentUser(user?.toString()!);
+  const res = await currentUser?.json();
   const validatedData = feedback.safeParse({
     title: formData.get("title"),
     category: formData.get("cat"),
@@ -214,6 +226,7 @@ export async function createFeedback(prevState: any, formData: FormData) {
       validatedData.data;
     const feedback = {
       title: title,
+      currentUser: res,
       category: category == "UI" || "UX" ? category : category.toLowerCase(),
       upvotes: upvotes,
       status: status,

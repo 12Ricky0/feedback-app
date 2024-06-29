@@ -9,7 +9,6 @@ import Link from "next/link";
 export default async function Page({ params }: { params: { id: string } }) {
   let data = await getProduct(params.id);
   let res = await data?.json();
-
   return (
     <main className=" mx-auto max-w-[730px] w-full">
       <section>
@@ -23,7 +22,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       </section>
       <section>
         <CommentCard item={res} />
-        <CommentForm _id={params.id} />
+        <CommentForm _id={params.id} user={res.currentUser.username} />
       </section>
     </main>
   );

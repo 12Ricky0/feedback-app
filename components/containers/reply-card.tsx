@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ReplyForm } from "./forms";
-import { string } from "zod";
 
 export default function ReplyCard({
   name,
@@ -14,11 +13,13 @@ export default function ReplyCard({
   commentId,
   replyto,
   className,
+  user,
   children,
 }: {
   name: string;
   userName: string;
   content: string;
+  user: string;
   src: string;
   id: string;
   _id: string;
@@ -70,6 +71,7 @@ export default function ReplyCard({
         {String(activeForm) == id && (
           <div className="md:ml-[56px]">
             <ReplyForm
+              user={user}
               userName={userName}
               _id={_id}
               commentId={commentId!}
