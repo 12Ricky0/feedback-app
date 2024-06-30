@@ -23,11 +23,12 @@ export async function POST(request: Request) {
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const query = searchParams.get("query");
-  //   console.log("Query Received:", query);
+  console.log("Query Received:", query);
   cookies().set({
     name: "username",
     value: JSON.stringify(query),
   });
+
   await dbConnect();
   let res = await CurrentUser.findOne({ username: query });
   return Response.json({ res }, { status: 200 });
