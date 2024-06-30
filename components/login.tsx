@@ -23,7 +23,6 @@ export default function Login() {
     name: generateLetter(),
     username: generateLetter() + generateRandomNumber(0, 100),
   };
-  //   console.log(newUser);
   useEffect(() => {
     const user = localStorage.getItem("user");
     if (!user) {

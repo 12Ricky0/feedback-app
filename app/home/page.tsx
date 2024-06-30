@@ -66,7 +66,7 @@ export default async function Home() {
       `http://localhost:3000/api/?query=${currentUser?.username}`
       // , { next: { revalidate: 200 },}
     );
-
+    // console.log(currentUser);
     const response = await req.json();
     if (response.res.length == 0) {
       await defaultInvoice(currentUser);
