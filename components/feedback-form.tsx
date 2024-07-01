@@ -12,7 +12,7 @@ function SelectOption() {
   const { category, setCategory }: any = useContext(ProductContext);
 
   return (
-    <div className="mt-4 bg-white absolute right-0 mx-6 left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
+    <div className="mt-4 bg-white absolute right-0 mx-6 md:mx-[42px] left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
       <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
         {options.map((option) => (
           <div
@@ -50,20 +50,22 @@ export default function FeedbackForm() {
   const router = useRouter();
   return (
     <div>
-      <Back />
-      <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px] md:mt-10 relative">
+      <div className="mx-6 md:mx-0">
+        <Back />
+      </div>
+      <section className="bg-white rounded-lg mx-6 md:mx-0 mt-[35px] mb-[70px] md:mb-0 md:mt-10 relative">
         <Image
           alt="check"
           src="/assets/shared/icon-new-feedback.svg"
           width={40}
           height={40}
-          className="absolute md:size-14 md:-translate-y-7 -translate-y-5 mx-6"
+          className="absolute md:size-14 md:-translate-y-6 -translate-y-5 mx-6 md:mx-[42px]"
         />
-        <h1 className="text-[18px] md:text-[24px] mx-6 font-bold text-secondary-dark-gray mb-6 pt-11">
+        <h1 className="text-[18px] md:text-[24px] mx-6 md:mx-[42px] font-bold text-secondary-dark-gray mb-6 pt-11">
           Create New Feedback
         </h1>
 
-        <form action={formAction} className="mx-6">
+        <form action={formAction} className="mx-6 md:mx-[42px]">
           <label
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray"
             htmlFor="title"

@@ -5,30 +5,30 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Login() {
-  function generateLetter() {
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    return (
-      alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
-      alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
-      alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
-      alphabet.charAt(Math.floor(Math.random() * alphabet.length))
-    );
-  }
-  const generateRandomNumber = (min: number, max: number) => {
-    return String(Math.floor(Math.random() * (max - min + 1)) + min);
-  };
+  // function generateLetter() {
+  //   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  //   return (
+  //     alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
+  //     alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
+  //     alphabet.charAt(Math.floor(Math.random() * alphabet.length)) +
+  //     alphabet.charAt(Math.floor(Math.random() * alphabet.length))
+  //   );
+  // }
+  // const generateRandomNumber = (min: number, max: number) => {
+  //   return String(Math.floor(Math.random() * (max - min + 1)) + min);
+  // };
 
-  const newUser = {
-    image: "./assets/user-images/image-zena.jpg",
-    name: generateLetter(),
-    username: generateLetter() + generateRandomNumber(0, 100),
-  };
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (!user) {
-      localStorage.setItem("user", JSON.stringify(newUser));
-    }
-  }, []);
+  // const newUser = {
+  //   image: "./assets/user-images/image-zena.jpg",
+  //   name: generateLetter(),
+  //   username: generateLetter() + generateRandomNumber(0, 100),
+  // };
+  // useEffect(() => {
+  //   const user = localStorage.getItem("user");
+  //   if (!user) {
+  //     localStorage.setItem("user", JSON.stringify(newUser));
+  //   }
+  // }, []);
   return (
     <section className="flex items-center flex-col justify-center py-[110px] mb-[55px] text-center bg-white mx-6 md:mx-0 mt-4 rounded-lg">
       <Image

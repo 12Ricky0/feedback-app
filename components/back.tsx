@@ -24,7 +24,7 @@ export default function Back({ className }: { className?: string }) {
       />
 
       <span
-        className={`${className} font-bold text-[13px] md:text-[14px] text-secondary-light-blue`}
+        className={`${className} hover:underline font-bold text-[13px] md:text-[14px] text-secondary-light-blue`}
       >
         Go Back
       </span>
