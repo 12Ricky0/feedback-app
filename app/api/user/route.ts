@@ -1,14 +1,10 @@
 import { dbConnect } from "@/libs/dbConnect";
-import mongoose from "mongoose";
 import CurrentUser from "@/models/user";
-import UserProduct from "@/models/productRequest";
 import { cookies } from "next/headers";
 
 export async function POST(request: Request) {
   const req = await request.json();
-  //   console.log("Data Received:", res);
   await dbConnect();
-  // console.log(req);
   cookies().set({
     name: "username",
     value: JSON.stringify(req.username),
@@ -31,8 +27,4 @@ export async function GET(request: Request) {
   await dbConnect();
   let res = await CurrentUser.findOne({ username: query });
   return Response.json({ res }, { status: 200 });
-  // //   return Response.json(
-  // //     { message: "Data Inserted Sucessfully" },
-  // //     { status: 200 }
-  //   );
 }

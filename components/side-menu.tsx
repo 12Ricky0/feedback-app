@@ -57,7 +57,7 @@ export default function SideMenu({
                     </ul>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-tetiary-sea-blue p-6">
+                    <h3 className="font-semibold text-[13px] underline cursor-pointer hover:opacity-50 text-primary-light-blue p-6">
                       <Link href="/roadmap">View</Link>
                     </h3>
                     <ul className="text-[16px] text-right mr-6 text-secondary-light-blue font-bold">

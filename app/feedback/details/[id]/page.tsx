@@ -3,7 +3,6 @@ import ProductCard from "@/components/containers/product-card";
 import { CommentForm } from "@/components/containers/forms";
 import { getProduct } from "@/libs/actions";
 import Back from "@/components/back";
-import Image from "next/image";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: { id: string } }) {

@@ -1,6 +1,4 @@
 import FeedbackForm from "@/components/feedback-form";
-import { getReplies } from "@/libs/actions";
-import { useFormState } from "react-dom";
 
 export default async function Add() {
   return (
