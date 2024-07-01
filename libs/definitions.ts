@@ -1,5 +1,4 @@
-// import { CurrentUser } from '@/models/user';
-import mongoose, { Document, Model } from "mongoose";
+import { Document } from "mongoose";
 
 export interface User extends Document {
   image: string;

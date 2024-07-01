@@ -1,6 +1,6 @@
 "use server";
 import { z } from "zod";
-import { Comment, User } from "./definitions";
+import { Comment } from "./definitions";
 
 import UserProduct from "@/models/productRequest";
 import CurrentUser from "@/models/user";
@@ -8,7 +8,6 @@ import { dbConnect } from "./dbConnect";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { unstable_noStore as noStore } from "next/cache";
-import { cookies } from "next/headers";
 
 export async function getSuggestions(id: string) {
   noStore();

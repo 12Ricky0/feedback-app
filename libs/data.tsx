@@ -10,7 +10,7 @@ const cookieStore = cookies();
 
 export default async function defaultInvoice(userData: User) {
   const uName = cookieStore.get("username");
-  const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
+  await getCurrentUser(uName?.value.replace(/"/g, "")!);
   data.productRequests.map((d) => {
     const udata = {
       currentUser: {
