@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { updateVote } from "@/libs/actions";
-import { useFormState } from "react-dom";
 
 export default function Upvotes({ vote, id }: { vote: number; id: string }) {
   function handleClick() {

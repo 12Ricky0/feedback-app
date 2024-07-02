@@ -1,11 +1,7 @@
 "use client";
 
 import { createContext, useState, useEffect } from "react";
-import { getCurrentUser } from "@/libs/actions";
 export const ProductContext = createContext({});
-import defaultInvoice from "./libs/data";
-import { User } from "./libs/definitions";
-import { useRouter } from "next/navigation";
 
 export default function ProductProvider({
   children,
@@ -35,7 +31,6 @@ export default function ProductProvider({
     return fetch(`http://localhost:3000/api/user/?query=${username}`)
       .then((response) => response.json())
       .then((data) => {
-        // console.log("success");
         return data;
       })
       .catch((error) => {
@@ -51,7 +46,6 @@ export default function ProductProvider({
       name: generateLetter(),
       username: generateLetter() + generateRandomNumber(0, 100),
     };
-    // setCookies(newUser);
     try {
       if (!user) {
         localStorage.setItem("user", JSON.stringify(newUser));

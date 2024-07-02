@@ -4,8 +4,8 @@ export async function dbConnect() {
   try {
     mongoose.connect(process.env.MONGODB_URI!);
     console.log("Connected to MongoDB");
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error connecting to MongoDB");
-    throw new Error("Error connecting to MongoDB", error);
+    throw new Error("Error connecting to MongoDB");
   }
 }
