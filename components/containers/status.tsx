@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Upvotes from "../upvote";
 import Link from "next/link";
+import { Comment } from "@/libs/definitions";
 
 export default function StatusContainer({
   id,
@@ -16,9 +17,17 @@ export default function StatusContainer({
   status: string;
   description: string;
   upvotes: number;
-  comments: number;
+  comments: Comment[];
   category: string;
 }) {
+  let total = 0;
+  comments.forEach((comment: Comment) => {
+    total++;
+    if (comment.replies) {
+      total += comment.replies.length;
+    }
+  });
+
   return (
     <div
       className={`bg-white rounded-lg border-t-[6px] group cursor-pointer md:max-w-[350px] ${
@@ -66,7 +75,7 @@ export default function StatusContainer({
               width={18}
               height={16}
             />
-            <span className="font-bold text-[13px]">{comments}</span>
+            <span className="font-bold text-[13px]">{total}</span>
           </div>
         </div>
       </article>

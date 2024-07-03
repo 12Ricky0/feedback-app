@@ -13,14 +13,6 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
   const progress = info.filter((d) => d.status === "in-progress");
   const live = info.filter((d) => d.status === "live");
 
-  // let total = 0;
-  // item.comments.forEach((comment: Comment) => {
-  //   total++;
-  //   if (comment.replies) {
-  //     total += comment.replies.length;
-  //   }
-  // });
-
   return (
     <section className="">
       <header className="bg-primary-dark-blue py-[26px] md:rounded-lg flex justify-between items-center">
@@ -96,7 +88,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
                 title={d.title}
                 description={d.description}
                 upvotes={d.upvotes}
-                comments={d.comments.length}
+                comments={d.comments}
                 category={d.category}
               />
             </div>
@@ -124,7 +116,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
                 title={d.title}
                 description={d.description}
                 upvotes={d.upvotes}
-                comments={d.comments.length}
+                comments={d.comments}
                 category={d.category}
               />
             </div>
@@ -148,7 +140,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
                 title={d.title}
                 description={d.description}
                 upvotes={d.upvotes}
-                comments={d.comments.length}
+                comments={d.comments}
                 category={d.category}
               />
             </div>
