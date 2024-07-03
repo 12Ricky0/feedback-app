@@ -13,6 +13,14 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
   const progress = info.filter((d) => d.status === "in-progress");
   const live = info.filter((d) => d.status === "live");
 
+  // let total = 0;
+  // item.comments.forEach((comment: Comment) => {
+  //   total++;
+  //   if (comment.replies) {
+  //     total += comment.replies.length;
+  //   }
+  // });
+
   return (
     <section className="">
       <header className="bg-primary-dark-blue py-[26px] md:rounded-lg flex justify-between items-center">
@@ -22,7 +30,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
             Roadmap
           </h1>
         </div>
-        <button className="bg-primary-voilet text-[13px] font-bold text-white h-10 mr-6 rounded-lg w-[134px]">
+        <button className="bg-primary-voilet hover: text-[13px] font-bold text-white h-10 mr-6 rounded-lg w-[134px]">
           <Image
             alt="down"
             src="/assets/shared/icon-plus.svg"
@@ -82,16 +90,15 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
 
           {planned?.map((d: any) => (
             <div key={d.id}>
-              <Link href={`/feedback/details/${d._id}`}>
-                <StatusContainer
-                  status={d.status}
-                  title={d.title}
-                  description={d.description}
-                  upvotes={d.upvotes}
-                  comments={d.comments.length}
-                  category={d.category}
-                />
-              </Link>
+              <StatusContainer
+                id={d._id}
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
             </div>
           ))}
         </div>
@@ -111,16 +118,15 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
 
           {progress?.map((d: any) => (
             <div key={d.id}>
-              <Link href={`/feedback/details/${d._id}`}>
-                <StatusContainer
-                  status={d.status}
-                  title={d.title}
-                  description={d.description}
-                  upvotes={d.upvotes}
-                  comments={d.comments.length}
-                  category={d.category}
-                />
-              </Link>
+              <StatusContainer
+                id={d._id}
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
             </div>
           ))}
         </div>
@@ -136,17 +142,15 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
 
           {live?.map((d: any) => (
             <div key={d.id}>
-              <Link href={`/feedback/details/${d._id}`}>
-                <StatusContainer
-                  id={d._id}
-                  status={d.status}
-                  title={d.title}
-                  description={d.description}
-                  upvotes={d.upvotes}
-                  comments={d.comments.length}
-                  category={d.category}
-                />
-              </Link>
+              <StatusContainer
+                id={d._id}
+                status={d.status}
+                title={d.title}
+                description={d.description}
+                upvotes={d.upvotes}
+                comments={d.comments.length}
+                category={d.category}
+              />
             </div>
           ))}
         </div>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Upvotes from "../upvote";
+import Link from "next/link";
 
 export default function StatusContainer({
   id,
@@ -32,16 +33,17 @@ export default function StatusContainer({
         </li>
       </div>
       <article className="mx-6 mt-[16px]">
-        <h1 className="font-bold text-[13px] group-hover:text-primary-light-blue lg:text-[18px] text-secondary-dark-gray">
-          {title}
-        </h1>
-        <p className="text-[13px] lg:text-[16px] text-secondary-light-blue mt-[9px] mb-6">
-          {description}
-        </p>
-        <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
-          {category.charAt(0).toUpperCase() + category.slice(1)}
-        </span>
-
+        <Link href={`/feedback/details/${id}`}>
+          <h1 className="font-bold text-[13px] group-hover:text-primary-light-blue lg:text-[18px] text-secondary-dark-gray">
+            {title}
+          </h1>
+          <p className="text-[13px] lg:text-[16px] text-secondary-light-blue mt-[9px] mb-6">
+            {description}
+          </p>
+          <span className="bg-secondary-very-gray px-4 py-[5px] rounded-lg text-primary-light-blue text-[13px] font-semibold">
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </span>
+        </Link>
         <div className="mt-[16px] flex justify-between items-center">
           {/* <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
             <Image

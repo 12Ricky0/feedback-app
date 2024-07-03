@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Upvotes from "../upvote";
 import { ProductRequest } from "@/libs/definitions";
+import { Comment } from "@/libs/definitions";
 
 export default function ProductCard({ item }: { item: ProductRequest }) {
   function get_status(status: string) {
@@ -19,6 +20,14 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
         return "UI";
     }
   }
+  let total = 0;
+  item.comments.forEach((comment: Comment) => {
+    total++;
+    if (comment.replies) {
+      total += comment.replies.length;
+    }
+  });
+
   return (
     <div className="bg-white group mx-6 md:mx-0 text-[13px] mt-4 cursor-pointer rounded-lg">
       <article className="py-[28px] mx-8 md:grid grid-cols-two justify-center items-center">
@@ -50,10 +59,10 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
           />
           <span
             className={`${
-              item.comments.length === 0 && "opacity-40"
+              total === 0 && "opacity-40"
             } font-bold md:text-[16px]`}
           >
-            {item.comments.length}
+            {total}
           </span>
         </div>
         {/* mobile view */}
