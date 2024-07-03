@@ -138,6 +138,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
             <div key={d.id}>
               <Link href={`/feedback/details/${d._id}`}>
                 <StatusContainer
+                  id={d._id}
                   status={d.status}
                   title={d.title}
                   description={d.description}

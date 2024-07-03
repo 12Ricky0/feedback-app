@@ -204,6 +204,13 @@ export async function postComment(prevState: any, formData: FormData) {
 export async function createFeedback(prevState: any, formData: FormData) {
   const user = formData.get("user");
 
+  function formatCategory(category: string) {
+    if (category == "UI" || category == "UX") {
+      return category;
+    } else {
+      return category.toLowerCase();
+    }
+  }
   const currentUser = await getCurrentUser(user?.toString()!);
   const res = await currentUser?.json();
   const validatedData = feedback.safeParse({
@@ -227,7 +234,7 @@ export async function createFeedback(prevState: any, formData: FormData) {
     const feedback = {
       title: title,
       currentUser: res,
-      category: category == "UI" || "UX" ? category : category.toLowerCase(),
+      category: formatCategory(category),
       upvotes: upvotes,
       status: status,
       description: description,

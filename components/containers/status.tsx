@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Upvotes from "../upvote";
 
 export default function StatusContainer({
+  id,
   title,
   status,
   description,
@@ -8,6 +10,7 @@ export default function StatusContainer({
   comments,
   category,
 }: {
+  id: string;
   title: string;
   status: string;
   description: string;
@@ -40,7 +43,7 @@ export default function StatusContainer({
         </span>
 
         <div className="mt-[16px] flex justify-between items-center">
-          <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
+          {/* <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
             <Image
               alt="down"
               src="/assets/shared/icon-arrow-up.svg"
@@ -51,7 +54,8 @@ export default function StatusContainer({
 
             <span className="font-bold text-[13px]">{upvotes}</span>
           </div>
-
+ */}
+          <Upvotes vote={upvotes} id={id} />
           <div className="">
             <Image
               alt="down"
