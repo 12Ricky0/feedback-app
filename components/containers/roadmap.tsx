@@ -81,7 +81,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
           </article>
 
           {planned?.map((d: any) => (
-            <div key={d.id}>
+            <div key={d._id}>
               <StatusContainer
                 id={d._id}
                 status={d.status}
@@ -109,7 +109,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
           </article>
 
           {progress?.map((d: any) => (
-            <div key={d.id}>
+            <div key={d._id}>
               <StatusContainer
                 id={d._id}
                 status={d.status}
@@ -133,7 +133,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
           </article>
 
           {live?.map((d: any) => (
-            <div key={d.id}>
+            <div key={d._id}>
               <StatusContainer
                 id={d._id}
                 status={d.status}

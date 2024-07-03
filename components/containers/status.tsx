@@ -54,18 +54,6 @@ export default function StatusContainer({
           </span>
         </Link>
         <div className="mt-[16px] flex justify-between items-center">
-          {/* <div className="bg-secondary-very-gray rounded-lg w-[69px] h-8 inline-flex items-center justify-center ">
-            <Image
-              alt="down"
-              src="/assets/shared/icon-arrow-up.svg"
-              className="inline-block mr-2"
-              width={8}
-              height={4}
-            />
-
-            <span className="font-bold text-[13px]">{upvotes}</span>
-          </div>
- */}
           <Upvotes vote={upvotes} id={id} />
           <div className="">
             <Image
