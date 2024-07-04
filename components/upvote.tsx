@@ -5,10 +5,17 @@ import { useState } from "react";
 
 export default function Upvotes({ vote, id }: { vote: number; id: string }) {
   const [voted, setVoted] = useState(false);
+  const [userVote, setUserVote] = useState(vote);
   const path = usePathname();
   function handleClick() {
-    updateVote(id);
+    if (userVote) {
+      // setUserVote(userVote - 1);
+    } else {
+      // setUserVote(userVote + 1);
+    }
+    updateVote(id, userVote);
     setVoted(!voted);
+    console.log(vote);
   }
 
   return (
