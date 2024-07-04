@@ -57,7 +57,7 @@ export default function ReplyCard({
         <button
           value={id}
           onClick={(e: any) => handleClick(e.target.value)}
-          className="text-[13px] text-primary-light-blue font-semibold"
+          className="text-[13px] hover:underline text-primary-light-blue font-semibold"
         >
           Reply
         </button>

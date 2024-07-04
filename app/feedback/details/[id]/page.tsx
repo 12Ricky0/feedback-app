@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <section>
         <div className="flex mx-6 md:mx-0 mt-6 md:mt-0 justify-between items-center">
           <Back className="mt-0" />
-          <button className="bg-primary-light-blue text-[13px] font-bold text-white h-10 rounded-lg w-[134px]">
+          <button className="bg-primary-light-blue text-[13px] hover:bg-tetiary-hov  font-bold text-white h-10 rounded-lg w-[134px]">
             <Link href={`/feedback/edit/${params.id}`}>Edit Feedback</Link>
           </button>
         </div>

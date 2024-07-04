@@ -42,7 +42,7 @@ export function CommentForm({ _id, user }: { _id: string; user: string }) {
           {count} Characters Left
         </span>
         <button
-          className="rounded-lg text-[13px] font-bold bg-primary-voilet py-[10px] px-4 text-white"
+          className="rounded-lg text-[13px] hover:bg-violet-400 font-bold bg-primary-voilet py-[10px] px-4 text-white"
           type="submit"
         >
           Post Comment
@@ -80,7 +80,7 @@ export function ReplyForm({
         className="w-full pl-4 pt-4  placeholder:pt-2 text-secondary-light-blue text-[13px] bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue"
       />
       <button
-        className="rounded-lg text-[13px]  font-bold bg-primary-voilet py-[10px] w-[117px] text-white"
+        className="rounded-lg text-[13px] hover:bg-violet-400 font-bold bg-primary-voilet py-[10px] w-[117px] text-white"
         type="submit"
         onSubmit={onSubmit}
       >

@@ -234,18 +234,18 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           <div className="mt-10 pb-6 md:flex flex-row-reverse justify-between gap-4">
             <div className=" md:flex flex-row-reverse gap-4">
               <button
-                className="border-none rounded-lg w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
+                className="border-none rounded-lg hover:bg-violet-400 w-full bg-primary-voilet py-[10px] md:w-[144px] text-white font-bold text-[13px]"
                 type="submit"
               >
                 Save Changes
               </button>
-              <button className="border-none rounded-lg md:w-[93px] w-full bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+              <button className="border-none rounded-lg md:w-[93px] w-full hover:bg-secondary-light-blue bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
                 Cancel
               </button>
             </div>
             <button
               onClick={() => deletePost(product._id)}
-              className="border-none rounded-lg md:w-[93px] w-full bg-tetiary-red mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]"
+              className="border-none hover:bg-red-400 rounded-lg md:w-[93px] w-full bg-tetiary-red mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]"
             >
               Delete
             </button>
