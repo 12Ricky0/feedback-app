@@ -28,6 +28,7 @@ export interface ProductRequest {
   title: string;
   category: string;
   upvotes: number;
+  voted: boolean;
   status: string;
   description: string;
   comments: Comment[];

@@ -22,6 +22,7 @@ const productSchema = new mongoose.Schema<ProductRequest>({
   title: String,
   category: String,
   upvotes: Number,
+  voted: Boolean,
   status: String,
   description: String,
   comments: [commentSchema],

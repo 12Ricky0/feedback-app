@@ -288,11 +288,12 @@ export async function deletePost(id: string) {
 
 export async function updateVote(id: string, vote: number) {
   let post = await UserProduct.findById(id);
-  await UserProduct.findByIdAndUpdate(
-    { _id: id },
-    { $inc: { upvotes: vote } }, // Increment the upvotes by 1
-    { new: true }
-  );
+  console.log(vote);
+  // await UserProduct.findByIdAndUpdate(
+  //   { _id: id },
+  //   { $inc: { upvotes: vote } }, // Increment the upvotes by 1
+  //   { new: true }
+  // );
   //  post.save();
   // if (post) {
   //   console.log(post.upvotes);

@@ -22,6 +22,7 @@ export default async function defaultInvoice(userData: User) {
       title: d.title,
       category: d.category,
       upvotes: d.upvotes,
+      voted: false,
       status: d.status,
       description: d.description,
       comments: d.comments,

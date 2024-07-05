@@ -13,6 +13,7 @@ export default function ProductProvider({
   const [editCat, setEditCat] = useState();
   const [currentUser, setCurrentUser]: any = useState();
   const [status, setStatus] = useState();
+  // const [voted, setVoted] = useState(false);
 
   function generateLetter() {
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";

@@ -1,21 +1,31 @@
 "use client";
 import { updateVote } from "@/libs/actions";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { ProductContext } from "@/user-provider";
 
 export default function Upvotes({ vote, id }: { vote: number; id: string }) {
-  const [voted, setVoted] = useState(false);
+  const { voted, setVoted }: any = useContext(ProductContext);
   const [userVote, setUserVote] = useState(vote);
   const path = usePathname();
+  const increase = vote + 1;
+  const decrease = vote - 1;
   function handleClick() {
     if (userVote) {
-      // setUserVote(userVote - 1);
+      // console.log(vote - 1);
+      // setVoted(!voted);
+      // setUserVote(vote - 1);
+      // setVoted(!voted);
     } else {
-      // setUserVote(userVote + 1);
+      // console.log(vote + 1);
+      // setUserVote(vote + 1);
+      // setVoted(!voted);
+      // setVoted(!voted);
     }
-    updateVote(id, userVote);
     setVoted(!voted);
-    console.log(vote);
+
+    updateVote(id, voted ? decrease : increase);
+    // console.log(voted);
   }
 
   return (
