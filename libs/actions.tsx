@@ -1,7 +1,7 @@
 "use server";
 import { z } from "zod";
 import { Comment } from "./definitions";
-
+import { notFound } from "next/navigation";
 import UserProduct from "@/models/productRequest";
 import CurrentUser from "@/models/user";
 import { dbConnect } from "./dbConnect";
@@ -20,7 +20,6 @@ export async function getSuggestions(id: string) {
     return Response.json(res);
   } catch (error) {
     console.error(error);
-    // throw new Error(notFound());
   }
   revalidatePath("/home");
 }
@@ -32,7 +31,7 @@ export async function verifyDefaultUserPost(query: string) {
     return Response.json(res);
   } catch (error) {
     console.error(error);
-    // throw new Error(notFound());
+    throw new Error(notFound());
   }
 }
 
@@ -46,7 +45,6 @@ export async function getRoadMap(query: string) {
     return Response.json(res);
   } catch (error) {
     console.error(error);
-    // throw new Error(notFound());
   }
   revalidatePath("/home");
 }
@@ -57,6 +55,7 @@ export async function getCurrentUser(query: string) {
     return Response.json(res);
   } catch (error) {
     console.error(error);
+    throw new Error(notFound());
   }
 }
 
@@ -65,7 +64,9 @@ export async function getProduct(query: string) {
     await dbConnect();
     let res = await UserProduct.findOne({ _id: query });
     return Response.json(res);
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(notFound());
+  }
 }
 
 const comment = z.object({
@@ -198,7 +199,9 @@ export async function postComment(prevState: any, formData: FormData) {
       post.save();
     }
     revalidatePath("/feedback/details/" + id);
-  } catch (error) {}
+  } catch (error) {
+    throw new Error(notFound());
+  }
 }
 
 export async function createFeedback(prevState: any, formData: FormData) {

@@ -75,7 +75,6 @@ export default function ReplyCard({
               userName={userName}
               _id={_id}
               commentId={commentId!}
-              onSubmit={() => setActiveForm(0)}
             />
           </div>
         )}
