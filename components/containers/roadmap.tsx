@@ -84,6 +84,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
             <div key={d._id}>
               <StatusContainer
                 id={d._id}
+                voted={d.voted}
                 status={d.status}
                 title={d.title}
                 description={d.description}
@@ -116,6 +117,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
                 title={d.title}
                 description={d.description}
                 upvotes={d.upvotes}
+                voted={d.voted}
                 comments={d.comments}
                 category={d.category}
               />
@@ -138,6 +140,7 @@ export default function RmComtainer({ info }: { info: ProductRequest[] }) {
                 id={d._id}
                 status={d.status}
                 title={d.title}
+                voted={d.voted}
                 description={d.description}
                 upvotes={d.upvotes}
                 comments={d.comments}

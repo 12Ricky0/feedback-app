@@ -33,7 +33,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
       <article className="py-[28px] mx-8 md:grid grid-cols-two justify-center items-center">
         <div className="md:inline-flex ">
           <div className="hidden md:inline-flex">
-            <Upvotes id={item._id} vote={item.upvotes} />
+            <Upvotes id={item._id} voted={item.voted} vote={item.upvotes} />
           </div>
           <Link href={`/feedback/details/${item._id}`} key={item.id}>
             <article className="md:mx-[40px]">
@@ -67,7 +67,7 @@ export default function ProductCard({ item }: { item: ProductRequest }) {
         </div>
         {/* mobile view */}
         <div className="flex justify-between mt-4 items-center md:hidden">
-          <Upvotes id={item._id} vote={item.upvotes} />
+          <Upvotes id={item._id} voted={item.voted} vote={item.upvotes} />
           <div className="flex items-center">
             <Image
               alt="down"

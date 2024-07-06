@@ -9,6 +9,7 @@ export default function StatusContainer({
   status,
   description,
   upvotes,
+  voted,
   comments,
   category,
 }: {
@@ -17,6 +18,7 @@ export default function StatusContainer({
   status: string;
   description: string;
   upvotes: number;
+  voted: boolean;
   comments: Comment[];
   category: string;
 }) {
@@ -54,7 +56,7 @@ export default function StatusContainer({
           </span>
         </Link>
         <div className="mt-[16px] flex justify-between items-center">
-          <Upvotes vote={upvotes} id={id} />
+          <Upvotes vote={upvotes} voted={voted} id={id} />
           <div className="">
             <Image
               alt="down"

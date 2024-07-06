@@ -286,19 +286,13 @@ export async function deletePost(id: string) {
   redirect("/home");
 }
 
-export async function updateVote(id: string, vote: number) {
-  let post = await UserProduct.findById(id);
-  console.log(vote);
-  // await UserProduct.findByIdAndUpdate(
-  //   { _id: id },
-  //   { $inc: { upvotes: vote } }, // Increment the upvotes by 1
-  //   { new: true }
-  // );
-  //  post.save();
-  // if (post) {
-  //   console.log(post.upvotes);
-  //   await post.upvotes + 1;
-  //   post.save();
-  // }
-  revalidatePath("/home");
+export async function updateVote(
+  id: string,
+  voted: boolean,
+  path: string,
+  vote: number
+) {
+  await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { voted: voted } });
+  await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { upvotes: vote } });
+  revalidatePath(path);
 }

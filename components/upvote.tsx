@@ -1,35 +1,30 @@
 "use client";
 import { updateVote } from "@/libs/actions";
 import { usePathname } from "next/navigation";
-import { useState, useContext } from "react";
-import { ProductContext } from "@/user-provider";
+import { useState } from "react";
 
-export default function Upvotes({ vote, id }: { vote: number; id: string }) {
-  const { voted, setVoted }: any = useContext(ProductContext);
-  const [userVote, setUserVote] = useState(vote);
+export default function Upvotes({
+  vote,
+  id,
+  voted,
+}: {
+  vote: number;
+  id: string;
+  voted: boolean;
+}) {
+  const [hasVoted, setHasVoted] = useState(voted);
   const path = usePathname();
   const increase = vote + 1;
   const decrease = vote - 1;
   function handleClick() {
-    if (userVote) {
-      // console.log(vote - 1);
-      // setVoted(!voted);
-      // setUserVote(vote - 1);
-      // setVoted(!voted);
-    } else {
-      // console.log(vote + 1);
-      // setUserVote(vote + 1);
-      // setVoted(!voted);
-      // setVoted(!voted);
-    }
-    setVoted(!voted);
-
-    updateVote(id, voted ? decrease : increase);
-    // console.log(voted);
+    const v = voted ? decrease : increase;
+    updateVote(id, hasVoted, path, v);
+    setHasVoted(!hasVoted);
   }
 
   return (
     <div
+      onClick={handleClick}
       className={`b ${
         voted ? "bg-primary-light-blue" : "bg-secondary-very-gray"
       } hover:bg-tetiary-hov cursor-pointer rounded-lg ${
@@ -41,7 +36,6 @@ export default function Upvotes({ vote, id }: { vote: number; id: string }) {
       <input type="hidden" name="post_id" value={id} />
 
       <div
-        onClick={handleClick}
         className={`inline-block ${
           path.endsWith("roadmap") ? "" : "md:mr-0 md:mb-2"
         } mr-2 `}
