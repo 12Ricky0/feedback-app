@@ -15,16 +15,21 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
+    <section className="flex items-center flex-col justify-center py-[110px] mb-[55px] text-center bg-white mx-6 md:mx-0 mt-4 rounded-lg">
+      <article className="mt-[53px]">
+        <h1 className="font-bold text-[24px] text-secondary-dark-gray mb-4">
+          Something went wrong!{" "}
+        </h1>
+      </article>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
           () => reset()
         }
+        className="bg-primary-voilet text-[13px] font-bold text-white h-10 mt-12 rounded-lg w-[134px]"
       >
         Try again
       </button>
-    </div>
+    </section>
   );
 }

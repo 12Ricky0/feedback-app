@@ -289,13 +289,12 @@ export async function deletePost(id: string) {
   redirect("/home");
 }
 
-export async function updateVote(
-  id: string,
-  voted: boolean,
-  path: string,
-  vote: number
-) {
-  await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { voted: voted } });
+export async function updateVote(id: string, path: string, vote: number) {
+  const data = await UserProduct.findById({ _id: id });
+  await UserProduct.findByIdAndUpdate(
+    { _id: id },
+    { $set: { voted: !data.voted } }
+  );
   await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { upvotes: vote } });
   revalidatePath(path);
   redirect(path);

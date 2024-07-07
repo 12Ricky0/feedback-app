@@ -12,14 +12,12 @@ export default function Upvotes({
   id: string;
   voted: boolean;
 }) {
-  const [hasVoted, setHasVoted] = useState(voted);
   const path = usePathname();
   const increase = vote + 1;
   const decrease = vote - 1;
   function handleClick() {
     const v = voted ? decrease : increase;
-    updateVote(id, hasVoted, path, v);
-    setHasVoted(!hasVoted);
+    updateVote(id, path, v);
   }
 
   return (
@@ -44,9 +42,9 @@ export default function Upvotes({
           <path
             d="M1 6l4-4 4 4"
             stroke={`${voted ? "white" : "#4661E6"}`}
-            stroke-width="2"
+            strokeWidth="2"
             fill="none"
-            fill-rule="evenodd"
+            fillRule="evenodd"
           />
         </svg>
       </div>
