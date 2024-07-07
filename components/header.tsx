@@ -30,7 +30,7 @@ export function Nav({ data }: { data: ProductRequest[] }) {
             src={`/assets/shared/mobile/${
               isOpen ? "icon-close.svg" : "icon-hamburger.svg"
             }`}
-            className="md:hidden "
+            className="md:hidden w-auto h-auto"
             width={20}
             height={17}
           />

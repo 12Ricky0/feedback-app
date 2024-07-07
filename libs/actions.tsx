@@ -298,4 +298,5 @@ export async function updateVote(
   await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { voted: voted } });
   await UserProduct.findByIdAndUpdate({ _id: id }, { $set: { upvotes: vote } });
   revalidatePath(path);
+  redirect(path);
 }
