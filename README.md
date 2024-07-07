@@ -5,7 +5,6 @@
 - [Overview](#overview)
   - [Screenshot](#screenshot)
   - [Links](#links)
-- [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
@@ -29,14 +28,16 @@ Users are be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![./public/assets/home.png](./public/assets/home.png)
+![./public/assets/details.png](./public/assets/details.png)
+![./public/assets/roadmap.png](./public/assets/roadmap.png)
+![./public/assets/form.png](./public/assets/form.png)
+![./public/assets/edit.png](./public/assets/edit.png)
 
 ### Links
 
 - Solution URL: [https://github.com/12Ricky0/feedback-app.git](https://github.com/12Ricky0/feedback-app.git)
 - Live Site URL: [Add live site URL here](https://your-live-site-url.com)
-
-## My process
 
 ### Built with
 
