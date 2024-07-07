@@ -6,6 +6,7 @@ import { ProductRequest } from "@/libs/definitions";
 import { ProductContext } from "@/user-provider";
 import { useFormState } from "react-dom";
 import { updatePost, deletePost } from "@/libs/actions";
+import { useRouter } from "next/navigation";
 
 function SelectOption() {
   const options = ["UI", "UX", "Enhancement", "Bug", "Feature"];
@@ -80,30 +81,30 @@ export default function EditForm({ product }: { product: ProductRequest }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isStatus, setIsStatus] = useState(false);
   const [message, formAction] = useFormState(updatePost, null);
-
+  const router = useRouter();
   function getCat(cat: string) {
     switch (cat) {
-      case "enhancement":
+      case "enhancement" || "Enhancement":
         return "Enhancement";
-      case "bug":
+      case "bug" || "Bug":
         return "Bug";
-      case "feature":
+      case "feature" || "Feature":
         return "Feature";
       case "UX" || "ux":
         return "UX";
-      case "ui" || "ui":
+      case "ui" || "UI":
         return "UI";
     }
   }
   function getStatus(status: string) {
     switch (status) {
-      case "suggestion":
+      case "suggestion" || "Suggestion":
         return "Suggestion";
-      case "planned":
+      case "planned" || "Planned":
         return "Planned";
-      case "in-progress":
+      case "in-progress" || "In-Progress":
         return "In-Progress";
-      case "live":
+      case "live" || "Live":
         return "Live";
     }
   }
@@ -144,12 +145,20 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             defaultValue={product.title}
             className="w-full pl-4 text-secondary-dark-gray text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
-          <label
+          {message?.errors.title && (
+            <div className="">
+              <p className="text-[13px] md:text-[14px] text-tetiary-red">
+                {message.errors.title}
+              </p>
+            </div>
+          )}
+
+          <span
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
-            htmlFor="category"
+            // htmlFor="category"
           >
             Category
-          </label>
+          </span>
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
             Choose a category for your feedback
           </span>
@@ -177,12 +186,12 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             {isOpen && <SelectOption />}
           </div>
 
-          <label
+          <span
             className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
-            htmlFor="status"
+            // htmlFor="status"
           >
             Update Status
-          </label>
+          </span>
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
             Change feedback state
           </span>
@@ -229,8 +238,19 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             rows={5}
             autoComplete="on"
             defaultValue={product.description}
-            className="w-full pl-4 text-secondary-dark-gray text-[13px] h- bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
+            className={`w-full pl-4 text-secondary-light-blue text-[13px] ${
+              message?.errors.description &&
+              "outline-tetiary-red outline-1 outline"
+            } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
+          {message?.errors.description && (
+            <div className="">
+              <p className="text-[13px] md:text-[14px] text-tetiary-red">
+                {message.errors.description}
+              </p>
+            </div>
+          )}
+
           <div className="mt-10 pb-6 md:flex flex-row-reverse justify-between gap-4">
             <div className=" md:flex flex-row-reverse gap-4">
               <button
@@ -239,7 +259,10 @@ export default function EditForm({ product }: { product: ProductRequest }) {
               >
                 Save Changes
               </button>
-              <button className="border-none rounded-lg md:w-[93px] w-full hover:bg-secondary-light-blue bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]">
+              <button
+                onClick={router.back}
+                className="border-none rounded-lg md:w-[93px] w-full hover:bg-secondary-light-blue bg-secondary-dark-gray mt-4 md:mt-0 py-[10px] text-white font-bold text-[13px]"
+              >
                 Cancel
               </button>
             </div>

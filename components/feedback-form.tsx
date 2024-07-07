@@ -84,7 +84,7 @@ export default function FeedbackForm() {
               message?.errors.title && "outline-tetiary-red outline-1 outline"
             } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
-          <input hidden value={currentUser.username} name="user" id="title" />
+          <input hidden value={currentUser.username} name="user" />
           {message?.errors.title && (
             <div className="">
               <p className="text-[13px] md:text-[14px] text-tetiary-red">
@@ -93,12 +93,9 @@ export default function FeedbackForm() {
             </div>
           )}
 
-          <label
-            className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
-            htmlFor="category"
-          >
+          <span className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6">
             Category
-          </label>
+          </span>
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
             Choose a category for your feedback
           </span>
