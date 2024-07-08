@@ -6,13 +6,13 @@ import defaultInvoice from "@/libs/data";
 import Login from "@/components/login";
 
 export default async function Defualt() {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
 
   // await fetch(`http://localhost:3000/api/user/?query=${newUser.username}`);
 
-  const uName = cookieStore.get("username");
-  const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
-  const currentUser = await user?.json();
+  // const uName = cookieStore.get("username");
+  // const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
+  // const currentUser = await user?.json();
   return (
     // <section className="flex items-center flex-col justify-center py-[110px] mb-[55px] text-center bg-white mx-6 md:mx-0 mt-4 rounded-lg">
     //   <Image

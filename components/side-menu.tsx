@@ -1,5 +1,5 @@
 "use client";
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { ProductContext } from "@/user-provider";
 import { Suspense } from "react";
 import Link from "next/link";

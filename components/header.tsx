@@ -8,9 +8,9 @@ import { ProductContext } from "@/user-provider";
 import { ProductRequest } from "@/libs/definitions";
 
 export function Nav({ data }: { data: ProductRequest[] }) {
-  const live = data.filter((d) => d.status === "live");
-  const progress = data.filter((d) => d.status === "in-progress");
-  const planned = data.filter((d) => d.status === "planned");
+  const live = data?.filter((d) => d.status === "live");
+  const progress = data?.filter((d) => d.status === "in-progress");
+  const planned = data?.filter((d) => d.status === "planned");
   const [isOpen, setIsOpen] = useState(false);
   return (
     <section className=" md:flex  lg:inline-block gap-[10px]">
