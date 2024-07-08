@@ -135,14 +135,14 @@ export default function EditForm({ product }: { product: ProductRequest }) {
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
             Add a short, descriptive headline
           </span>
-          <input type="hidden" name="post_id" value={product._id} />
+          <input type="hidden" name="post_id" value={product?._id} />
 
           <input
             type="text"
             name="title"
             id="title"
             autoComplete="on"
-            defaultValue={product.title}
+            defaultValue={product?.title}
             className="w-full pl-4 text-secondary-dark-gray text-[13px] h-12 bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4"
           />
           {message?.errors.title && (
@@ -237,7 +237,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             maxLength={255}
             rows={5}
             autoComplete="on"
-            defaultValue={product.description}
+            defaultValue={product?.description}
             className={`w-full pl-4 text-secondary-light-blue text-[13px] ${
               message?.errors.description &&
               "outline-tetiary-red outline-1 outline"
