@@ -6,9 +6,8 @@ import { getCurrentUser } from "@/libs/actions";
 import UserProduct from "@/models/productRequest";
 import { User } from "./definitions";
 
-const cookieStore = cookies();
-
 export default async function defaultInvoice(userData: User) {
+  const cookieStore = cookies();
   const uName = cookieStore.get("username");
   await getCurrentUser(uName?.value.replace(/"/g, "")!);
   data.productRequests.map((d) => {
