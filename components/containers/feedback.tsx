@@ -12,11 +12,11 @@ export default function FeedbackContainer({
 }: {
   data: ProductRequest[];
 }) {
-  const { sort, sortBy, currentUser }: any = useContext(ProductContext);
+  const { sort, sortBy }: any = useContext(ProductContext);
   let items: ProductRequest[];
   sort == "ALL"
     ? (items = data)
-    : (items = data.filter(
+    : (items = data?.filter(
         (item: ProductRequest) =>
           item.category.toLowerCase() == sort.toLowerCase()
       ));
@@ -39,7 +39,7 @@ export default function FeedbackContainer({
     <section>
       <Header count={items.length} />
       {items.length > 0 ? (
-        sort_data().map((item) => (
+        sort_data()?.map((item) => (
           <div key={item._id}>
             <ProductCard item={item} />
           </div>

@@ -14,7 +14,7 @@ function SelectOption() {
   return (
     <div className="mt-4 bg-white absolute right-0 mx-6 md:mx-[42px] left-0 shadow-lg shadow-secondary-light-blue rounded-lg">
       <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
-        {options.map((option) => (
+        {options?.map((option) => (
           <div
             key={options.indexOf(option)}
             className="flex items-center justify-between pr-6 border-b last:border-b-0"
@@ -84,7 +84,11 @@ export default function FeedbackForm() {
               message?.errors.title && "outline-tetiary-red outline-1 outline"
             } bg-secondary-very-gray rounded-lg focus:outline-tetiary-sea-blue mt-4`}
           />
-          <input hidden value={currentUser.username} name="user" />
+          <input
+            hidden
+            value={currentUser && currentUser.username}
+            name="user"
+          />
           {message?.errors.title && (
             <div className="">
               <p className="text-[13px] md:text-[14px] text-tetiary-red">
