@@ -39,16 +39,16 @@ export function Nav({ data }: { data: ProductRequest[] }) {
 
       {isOpen && (
         <SideMenu
-          live={live.length}
-          progress={progress.length}
-          planned={planned.length}
+          live={live?.length}
+          progress={progress?.length}
+          planned={planned?.length}
         />
       )}
       <div className="hidden md:block">
         <SideMenu
-          live={live.length}
-          progress={progress.length}
-          planned={planned.length}
+          live={live?.length}
+          progress={progress?.length}
+          planned={planned?.length}
         />
       </div>
     </section>
@@ -97,9 +97,9 @@ export function Header({ count }: { count: number }) {
         {select && (
           <div className="absolute md:top-[350px] lg:top-[170px] top-[140px] w-[200px] md:ml-[190px] bg-white md:w-[255px] shadow-lg shadow-secondary-light-blue rounded-lg">
             <ul className="text-[16px] text-secondary-light-blue cursor-pointer">
-              {options.map((option) => (
+              {options?.map((option) => (
                 <div
-                  key={options.indexOf(option)}
+                  key={options?.indexOf(option)}
                   className="flex items-center justify-between pr-6 border-b last:border-b-0"
                 >
                   <li

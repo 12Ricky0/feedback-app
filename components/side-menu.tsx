@@ -22,7 +22,7 @@ export default function SideMenu({
           <div className="md:inline-flex lg:inline-block justify-between gap-[10px]">
             <header className="bg-white rounded-lg my-6 md:my-0 lg:my-6 md:w-[223px] lg:w-[255px] md:h-[178px] lg-h-[166px]">
               <ul className="grid grid-cols-4 grid-rows-3 gap-x-2 gap-y-4 p-6">
-                {options.map((option) => (
+                {options?.map((option) => (
                   <li
                     onClick={() => setSort(option)}
                     className={` px-4 py-[5px] last:w-[77px] hover:bg-tetiary-hov cursor-pointer ${

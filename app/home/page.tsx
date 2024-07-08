@@ -16,7 +16,7 @@ export default async function Home() {
       `http://localhost:3000/api/?query=${currentUser?.username}`
     );
     const response = await req.json();
-    if (response.res.length == 0) {
+    if (response?.res.length == 0) {
       await defaultInvoice(currentUser);
     }
   }
