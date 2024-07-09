@@ -28,7 +28,9 @@ export default function ProductProvider({
   };
 
   const fetchCurrentUser = (username: string) => {
-    return fetch(`/api/user/?query=${username}`)
+    return fetch(
+      `https://feedback-app-12ricky0s-projects.vercel.app/api/user/?query=${username}`
+    )
       .then((response) => response.json())
       .then((data) => {
         return data;
@@ -50,7 +52,7 @@ export default function ProductProvider({
       if (!user) {
         localStorage.setItem("user", JSON.stringify(newUser));
 
-        fetch("/api/user", {
+        fetch("https://feedback-app-12ricky0s-projects.vercel.app/api/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -68,7 +70,11 @@ export default function ProductProvider({
     } finally {
       if (!user) {
         const query = localStorage.getItem("user");
-        fetch(`/api/user/?query=${JSON.parse(query!).username}`)
+        fetch(
+          `https://feedback-app-12ricky0s-projects.vercel.app/api/user/?query=${
+            JSON.parse(query!).username
+          }`
+        )
           .then((response) => response.json())
           .then((data) => {
             setCurrentUser(data.res);
