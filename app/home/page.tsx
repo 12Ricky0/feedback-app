@@ -13,10 +13,10 @@ export default async function Home() {
   const currentUser = await user?.json();
   if (currentUser) {
     let req = await fetch(
-      `https://feedback-app-ecru.vercel.app/api/?query=${currentUser?.username}`
+      `https://feedback-app-12ricky0s-projects.vercel.app/api/?query=${currentUser?.username}`
     );
     const response = await req.json();
-    if (response?.res.length == 0) {
+    if (response.res.length == 0) {
       await defaultInvoice(currentUser);
     }
   }
