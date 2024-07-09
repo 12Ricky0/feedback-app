@@ -1,7 +1,6 @@
 "use client";
 import { updateVote } from "@/libs/actions";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
 
 export default function Upvotes({
   vote,

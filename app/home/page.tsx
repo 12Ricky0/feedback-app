@@ -13,7 +13,7 @@ export default async function Home() {
   const currentUser = await user?.json();
   if (currentUser) {
     let req = await fetch(
-      `http://localhost:3000/api/?query=${currentUser?.username}`
+      `https://feedback-app-ecru.vercel.app/api/?query=${currentUser?.username}`
     );
     const response = await req.json();
     if (response?.res.length == 0) {
