@@ -28,7 +28,9 @@ export default function ProductProvider({
   };
 
   const fetchCurrentUser = (username: string) => {
-    return fetch(`http://localhost:3000/api/user/?query=${username}`)
+    return fetch(
+      `https://feedback-app-ecru.vercel.app/api/user/?query=${username}`
+    )
       .then((response) => response.json())
       .then((data) => {
         return data;
@@ -50,7 +52,7 @@ export default function ProductProvider({
       if (!user) {
         localStorage.setItem("user", JSON.stringify(newUser));
 
-        fetch("http://localhost:3000/api/user", {
+        fetch("https://feedback-app-ecru.vercel.app/api/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -69,7 +71,9 @@ export default function ProductProvider({
       if (!user) {
         const query = localStorage.getItem("user");
         fetch(
-          `http://localhost:3000/api/user/?query=${JSON.parse(query!).username}`
+          `https://feedback-app-ecru.vercel.app/api/user/?query=${
+            JSON.parse(query!).username
+          }`
         )
           .then((response) => response.json())
           .then((data) => {
