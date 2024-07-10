@@ -29,7 +29,15 @@ export default function ProductProvider({
 
   const fetchCurrentUser = (username: string) => {
     return fetch(
-      `https://feedback-app-12ricky0s-projects.vercel.app/api/user/?query=${username}`
+      `https://feedback-app-ecru.vercel.app/api/user/?query=${username}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      }
     )
       .then((response) => response.json())
       .then((data) => {
@@ -52,10 +60,13 @@ export default function ProductProvider({
       if (!user) {
         localStorage.setItem("user", JSON.stringify(newUser));
 
-        fetch("https://feedback-app-12ricky0s-projects.vercel.app/api/user", {
+        fetch("https://feedback-app-ecru.vercel.app/api/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
           },
           body: JSON.stringify(newUser),
         });
@@ -71,9 +82,17 @@ export default function ProductProvider({
       if (!user) {
         const query = localStorage.getItem("user");
         fetch(
-          `https://feedback-app-12ricky0s-projects.vercel.app/api/user/?query=${
+          `https://feedback-app-ecru.vercel.app/api/user/?query=${
             JSON.parse(query!).username
-          }`
+          }`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Access-Control-Allow-Origin": "*",
+              "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+              "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            },
+          }
         )
           .then((response) => response.json())
           .then((data) => {

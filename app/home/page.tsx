@@ -13,7 +13,15 @@ export default async function Home() {
   const currentUser = await user?.json();
   if (currentUser) {
     let req = await fetch(
-      `https://feedback-app-12ricky0s-projects.vercel.app/api/?query=${currentUser?.username}`
+      `https://feedback-app-ecru.vercel.app/api/?query=${currentUser?.username}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      }
     );
     const response = await req.json();
     if (response.res.length == 0) {
