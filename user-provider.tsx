@@ -106,26 +106,6 @@ export default function ProductProvider({
     }
   }, []);
 
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     // defaultInvoice(currentUser!);
-  //     const data = fetch(
-  //       `http://localhost:3000/api/?query=${currentUser.username}`
-  //     )
-  //       .then((response) => response.json())
-  //       .then((data) => {
-  //         if (data.res.length == 0) {
-  //           defaultInvoice(currentUser);
-  //           // console.log("success", data);
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching user data:", error);
-  //         return null;
-  //       });
-  //   }
-  // }, [currentUser]);
-
   const [sortBy, setSortBy] = useState<string>("Most Upvotes");
 
   return (

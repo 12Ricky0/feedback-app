@@ -5,13 +5,6 @@ import { getCurrentUser } from "@/libs/actions";
 import defaultInvoice from "@/libs/data";
 
 export default async function Defualt() {
-  // const cookieStore = cookies();
-
-  // await fetch(`http://localhost:3000/api/user/?query=${newUser.username}`);
-
-  // const uName = cookieStore.get("username");
-  // const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
-  // const currentUser = await user?.json();
   const cookieStore = cookies();
   const uName = cookieStore.get("username");
   const user = await getCurrentUser(uName?.value.replace(/"/g, "")!);
