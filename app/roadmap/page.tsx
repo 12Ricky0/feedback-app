@@ -2,6 +2,11 @@ import RmComtainer from "@/components/containers/roadmap";
 import { getRoadMap } from "@/libs/actions";
 import { cookies } from "next/headers";
 import { getCurrentUser } from "@/libs/actions";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Roadmap",
+};
 
 export default async function Roadmap() {
   const cookieStore = cookies();

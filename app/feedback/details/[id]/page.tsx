@@ -4,6 +4,11 @@ import { CommentForm } from "@/components/containers/forms";
 import { getProduct } from "@/libs/actions";
 import Back from "@/components/back";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Feedback Details",
+};
 
 export default async function Page({ params }: { params: { id: string } }) {
   let data = await getProduct(params.id);

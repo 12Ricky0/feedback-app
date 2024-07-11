@@ -1,4 +1,9 @@
 import FeedbackForm from "@/components/feedback-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Add Feedback",
+};
 
 export default async function Add() {
   return (

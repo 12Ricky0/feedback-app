@@ -1,5 +1,10 @@
 import EditForm from "@/components/edit-form";
 import { getProduct } from "@/libs/actions";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Edit Product",
+};
 
 export default async function Edit({ params }: { params: { id: string } }) {
   let data = await getProduct(params.id);
