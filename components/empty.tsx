@@ -33,12 +33,6 @@ export default function Empty() {
         />
         <Link href="/feedback/add">Add Feedback</Link>
       </button>
-      <button
-        onClick={() => router.push("/")}
-        className="bg-primary-voilet text-[13px] font-bold text-white h-10 mt-12 rounded-lg w-[134px]"
-      >
-        Reload
-      </button>
     </section>
   );
 }

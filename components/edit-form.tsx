@@ -153,10 +153,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             </div>
           )}
 
-          <span
-            className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
-            // htmlFor="category"
-          >
+          <span className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6">
             Category
           </span>
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
@@ -172,7 +169,6 @@ export default function EditForm({ product }: { product: ProductRequest }) {
                 readOnly
                 name="cat"
                 className="focus:outline-none bg-inherit"
-                // defaultValue={product.category}
                 value={editCat ? editCat : getCat(product.category)}
               />
               <Image
@@ -186,10 +182,7 @@ export default function EditForm({ product }: { product: ProductRequest }) {
             {isOpen && <SelectOption />}
           </div>
 
-          <span
-            className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6"
-            // htmlFor="status"
-          >
+          <span className="text-[13px] md:text-[14px] block font-bold text-secondary-dark-gray mt-6">
             Update Status
           </span>
           <span className="text-secondary-light-blue md:text-[14px] text-[13px]">
